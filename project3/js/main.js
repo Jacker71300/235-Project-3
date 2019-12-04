@@ -11,6 +11,8 @@ let stage;
 let menuScene;
 let gameScene;
 let gameOverScene;
+let rows = [];
+let currentRow = 0;
 
 setup();
 
@@ -35,6 +37,8 @@ function setup(){
 }
 
 function addTextAndButtons(){
+
+    // Create start button for main menu
     let startButton = new PIXI.Text("Start");
     startButton.style = new PIXI.TextStyle({
         fill: 0x00FF00,
@@ -51,11 +55,32 @@ function addTextAndButtons(){
     startButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     menuScene.addChild(startButton);
 
+    // Create the rows and input for game scene
     createRows(10);
     createKeyAndInput();
 
+    // Create submit button for game scene
+    let submitButton = new PIXI.Text("Submit");
+    submitButton.style = new PIXI.TextStyle({
+        fill: 0x00FF00,
+        fontSize: 30,
+        fontFamily: "Vernanda",
+        strokeThickness: 6
+    });
+    submitButton.x = 200;
+    submitButton.y = sceneHeight - 100;
+    submitButton.interactive = true;
+    submitButton.buttonMode = true;
+    submitButton.on("pointerup",submit);
+    submitButton.on("pointerover",e=>e.target.alpha = 0.7);
+    submitButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
+    gameScene.addChild(submitButton);
+
+
+    // Create restart button for game over scene
     let restartButton = new PIXI.Text("Play Again?");
-    restartButton.style = new PIXI.TextStyle({fill: 0x00FF00,
+    restartButton.style = new PIXI.TextStyle({
+        fill: 0x00FF00,
         fontSize: 30,
         fontFamily: "Vernanda",
         strokeThickness: 6
@@ -80,6 +105,7 @@ function startGame(){
 function createRows(num){
     for(let i = 1; i <= num; i++){
         let row = new Row(0, sceneHeight - 100 - 50 * i);
+        rows.push(row);
         gameScene.addChild(row);
     }
 }
@@ -89,4 +115,12 @@ function createKeyAndInput(){
     gameScene.addChild(key);
     let input = new Input(0, 0);
     gameScene.addChild(input);
+}
+
+function submit(){
+    currentRow++;
+}
+
+function getCurrentRow(){
+    return rows[currentRow];
 }
