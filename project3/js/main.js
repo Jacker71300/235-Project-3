@@ -85,8 +85,8 @@ function createRows(num){
 }
 
 function createKeyAndInput(){
-    let key = new Key(0, 0);
+    let key = new Key(50, 0);
     gameScene.addChild(key);
-
-    let input;
+    let input = new Input(0, 0);
+    gameScene.addChild(input);
 }
