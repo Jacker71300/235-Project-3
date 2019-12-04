@@ -31,15 +31,10 @@ function setup(){
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
 
-    let row1 = new Row();
-    menuScene.addChild(row1);
-
     addTextAndButtons();
 }
 
 function addTextAndButtons(){
-    let testRow = new Row();
-
     let startButton = new PIXI.Text("Start");
     startButton.style = new PIXI.TextStyle({
         fill: 0x00FF00,
@@ -49,13 +44,20 @@ function addTextAndButtons(){
     });
     startButton.x = 0;
     startButton.y = 0;
-
+    startButton.interactive = true;
+    startButton.buttonMode = true;
+    startButton.on("pointerup",startGame);
+    startButton.on("pointerover",e=>e.target.alpha = 0.7);
+    startButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     menuScene.addChild(startButton);
-    menuScene.addChild(testRow);
+
+    let row = new Row();
+    gameScene.addChild(row);
 }
 
 function startGame(){
     gameScene.visible = true;
     menuScene.visible = false;
     gameOverScene.visible = false;
+
 }

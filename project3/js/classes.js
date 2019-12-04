@@ -59,10 +59,10 @@ class Row extends PIXI.Graphics{
         this.addChild(hole3);
         this.addChild(hole4);
     
-        let answer1;
-        let answer2;
-        let answer3;
-        let answer4;
+        let answer1 = new PIXI.Graphics;
+        let answer2 = new PIXI.Graphics;
+        let answer3 = new PIXI.Graphics;
+        let answer4 = new PIXI.Graphics;
         
         answer1.beginFill(answerArray[0]);
         answer1.drawCircle(this.x + 240, this.y + 5, 8)
