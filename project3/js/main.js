@@ -53,6 +53,8 @@ function addTextAndButtons(){
 
     let row = new Row();
     gameScene.addChild(row);
+    let key = new Key();
+    gameScene.addChild(key);
 }
 
 function startGame(){
