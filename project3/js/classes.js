@@ -106,7 +106,54 @@ class Key extends PIXI.Graphics{
         let colorArray = [];
 
         for(let i = 0; i < 4; i++){
-            let colorNum = Math.random() * 6;
+            let colorNum = Math.floor(Math.random() * 6);
+
+            if(colorNum == 0){
+                colorArray[i] = 0xFF0000;
+            }
+            else if(colorNum == 1){
+                colorArray[i] = 0xFF8C00;
+            }
+            else if(colorNum == 2){
+                colorArray[i] = 0xDAFF00;
+            }
+            else if(colorNum == 3){
+                colorArray[i] = 0x00DD00;
+            }
+            else if(colorNum == 4){
+                colorArray[i] = 0x0000FF;
+            }
+            else if(colorNum == 5){
+                colorArray[i] = 0x800080;
+            }
         }
+
+        let peg1 = new PIXI.Graphics();
+        let peg2 = new PIXI.Graphics();
+        let peg3 = new PIXI.Graphics();
+        let peg4 = new PIXI.Graphics();
+
+        peg1.beginFill(colorArray[0]);
+        peg1.drawCircle(x + 30, y + 25, 20);
+        peg1.endFill();
+        
+        peg2.beginFill(colorArray[1]);
+        peg2.drawCircle(x + 90, y + 25, 20);
+        peg2.endFill();
+        
+        peg3.beginFill(colorArray[2]);
+        peg3.drawCircle(x + 150, y + 25, 20);
+        peg3.endFill();
+        
+        peg4.beginFill(colorArray[3]);
+        peg4.drawCircle(x + 210, y + 25, 20);
+        peg4.endFill();
+
+        this.addChild(peg1);
+        this.addChild(peg2);
+        this.addChild(peg3);
+        this.addChild(peg4);
+
+
     }
 }

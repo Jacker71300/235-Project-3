@@ -20,7 +20,7 @@ function setup(){
     menuScene = new PIXI.Container();
     menuScene.visible = true;
     stage.addChild(menuScene);
-    
+
     console.log(menuScene);
 
     gameScene = new PIXI.Container();
