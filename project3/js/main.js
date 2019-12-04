@@ -52,6 +52,7 @@ function addTextAndButtons(){
     menuScene.addChild(startButton);
 
     createRows(10);
+    createKeyAndInput();
 }
 
 function startGame(){
@@ -66,4 +67,9 @@ function createRows(num){
         let row = new Row(0, sceneHeight - 100 - 50 * i);
         gameScene.addChild(row);
     }
+}
+
+function createKeyAndInput(){
+    let key = new Key(0, 0);
+    gameScene.addChild(key);
 }
