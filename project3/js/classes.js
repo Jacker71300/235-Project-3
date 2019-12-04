@@ -54,6 +54,11 @@ class Row extends PIXI.Graphics{
         hole3.on("pointerup", colorArray[2] = 0x555555);
         hole4.on("pointerup", colorArray[3] = 0x555555);
     
+        let answer1;
+        let answer2;
+        let answer3;
+        let answer4;
+        
         answer1.beginFill(answerArray[0]);
         answer1.drawCircle(this.x + 240, this.y + 5, 8)
         answer1.endFill();
