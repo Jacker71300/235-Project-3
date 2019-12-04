@@ -16,6 +16,7 @@ let currentRow = 0;
 
 setup();
 
+
 function setup(){
     stage = app.stage;
 
@@ -34,6 +35,8 @@ function setup(){
     stage.addChild(gameOverScene);
 
     addTextAndButtons();
+
+    app.ticker.add(gameLoop);
 }
 
 function addTextAndButtons(){
@@ -123,4 +126,10 @@ function submit(){
 
 function getCurrentRow(){
     return rows[currentRow];
+}
+
+function gameLoop(){
+    rows.forEach(row => {
+        row.updateColors();
+    });
 }

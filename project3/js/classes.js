@@ -100,7 +100,7 @@ class Row extends PIXI.Graphics{
         this.drawRect(x, y, 400, 50);
         this.endFill();
 
-        let colorArray = [0x555555, 0x555555, 0x555555, 0x555555];
+        this.colorArray = [0x555555, 0x555555, 0x555555, 0x555555];
         let answerArray = [0x555555, 0x555555, 0x555555, 0x555555];
 
         let hole1 = new PIXI.Graphics();
@@ -108,44 +108,44 @@ class Row extends PIXI.Graphics{
         let hole3 = new PIXI.Graphics();
         let hole4 = new PIXI.Graphics();
 
-        hole1.beginFill(colorArray[0]);
+        hole1.beginFill(this.colorArray[0]);
         hole1.drawCircle(x + 30, y + 25, 20);
         hole1.endFill();
         
-        hole2.beginFill(colorArray[1]);
+        hole2.beginFill(this.colorArray[1]);
         hole2.drawCircle(x + 90, y + 25, 20);
         hole2.endFill();
         
-        hole3.beginFill(colorArray[2]);
+        hole3.beginFill(this.colorArray[2]);
         hole3.drawCircle(x + 150, y + 25, 20);
         hole3.endFill();
         
-        hole4.beginFill(colorArray[3]);
+        hole4.beginFill(this.colorArray[3]);
         hole4.drawCircle(x + 210, y + 25, 20);
         hole4.endFill();
 
         hole1.interactive = true;
         hole1.buttonMode = true;
         hole1.on("pointerover", e=>e.target.alpha = .7)
-        hole1.on("pointerup", colorArray[0] = 0x555555);
+        hole1.on("pointerup", this.colorArray[0] = 0x555555);
         hole1.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         hole2.interactive = true;
         hole2.buttonMode = true;
         hole2.on("pointerover", e=>e.target.alpha = .7)
-        hole2.on("pointerup", colorArray[0] = 0x555555);
+        hole2.on("pointerup", this.colorArray[0] = 0x555555);
         hole2.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         hole3.interactive = true;
         hole3.buttonMode = true;
         hole3.on("pointerover", e=>e.target.alpha = .7)
-        hole3.on("pointerup", colorArray[0] = 0x555555);
+        hole3.on("pointerup", this.colorArray[0] = 0x555555);
         hole3.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         hole4.interactive = true;
         hole4.buttonMode = true;
         hole4.on("pointerover", e=>e.target.alpha = .7)
-        hole4.on("pointerup", colorArray[0] = 0x555555);
+        hole4.on("pointerup", this.colorArray[0] = 0x555555);
         hole4.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     
         let answer1 = new PIXI.Graphics;
