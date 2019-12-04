@@ -46,33 +46,50 @@ class Input extends PIXI.Graphics{
         this.addChild(color5);
         this.addChild(color6);
 
+        color1.interactive = true;
+        color1.buttonMode = true;
         color1.on("pointerover", e=>e.target.alpha = .7);
-        color1.on("pointerup", this.transferColor);
+        color1.on("pointerup", e=>this.transferColor(currentRow, e.target));
         color1.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
+        color2.interactive = true;
+        color2.buttonMode = true;
         color2.on("pointerover", e=>e.target.alpha = .7);
-        color2.on("pointerup", this.transferColor);
+        color2.on("pointerup", e=>this.transferColor(currentRow, e.target));
         color2.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
+        color3.interactive = true;
+        color3.buttonMode = true;
         color3.on("pointerover", e=>e.target.alpha = .7);
-        color3.on("pointerup", this.transferColor);
+        color3.on("pointerup", e=>this.transferColor(currentRow, e.target));
         color3.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
+        color4.interactive = true;
+        color4.buttonMode = true;
         color4.on("pointerover", e=>e.target.alpha = .7);
-        color4.on("pointerup", this.transferColor);
+        color4.on("pointerup", e=>this.transferColor(currentRow, e.target));
         color4.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
+        color5.interactive = true;
+        color5.buttonMode = true;
         color5.on("pointerover", e=>e.target.alpha = .7);
-        color5.on("pointerup", this.transferColor);
+        color5.on("pointerup", e=>this.transferColor(currentRow, e.target));
         color5.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
+        color6.interactive = true;
+        color6.buttonMode = true;
         color6.on("pointerover", e=>e.target.alpha = .7);
-        color6.on("pointerup", this.transferColor);
+        color6.on("pointerup", e=>this.transferColor(currentRow, e.target));
         color6.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     }
 
-    transferColor(){
-        return;
+    transferColor(row, e){
+        for(let i = 0; i < 4; i++){
+            if(row.colorArray[i] == 0x555555){
+                row.colorArray[i] = e.color;
+                break;
+            }
+        }
     }
 }
 
