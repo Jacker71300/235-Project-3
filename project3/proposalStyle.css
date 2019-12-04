@@ -1,0 +1,140 @@
+h2 {
+    color: #D42125;
+    font-family: sans-serif;
+    border-bottom: 5px solid #05496C;
+}
+
+body{
+    width: 80vw;
+    padding: 0vw 10vw 0vw;
+    margin: auto;
+    background-color:gray;
+}
+
+#wrapper{
+    background-color: #68c6e0;
+    padding: 2vw;
+    height: 166vh;
+}
+
+h1{
+    color: #D42125;
+    grid-area: heading;
+    margin: 0 auto;
+    border-bottom: 5px solid #05496C;
+}
+
+#screenshot{
+    grid-area: screenshot;
+}
+
+#screenshot img{
+    width: 16vw;
+    padding: 2px;
+    margin: 0 auto;
+}
+
+#concept{
+    grid-area: concept;
+    overflow: auto;
+}
+
+#platform{
+    grid-area: platform;
+    overflow: auto;
+}
+
+#theme{
+    grid-area: theme;
+    overflow: auto;
+}
+
+#style{
+    grid-area: style;
+    overflow: auto;
+}
+
+#gameplay{
+    grid-area: gameplay;
+    overflow: auto;
+}
+
+#developer{
+    grid-area: developer;
+    overflow: auto;
+}
+
+#links{
+    grid-area: links;
+    overflow: auto;
+}
+
+#screenshot, #concept, #platform, #theme, #style, #gameplay, #developer, #links{
+    margin: 5px;
+    padding: 5px;
+    background-color: #ccc;
+    border-radius: 1vw;
+}
+
+ul {
+    grid-area: nav;
+    list-style-type: none;
+    background-color: lightgray;
+    color: black;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+li {
+    float: left;
+}
+  
+li a {
+    display: block;
+    color: #1d6579;
+    font-size: 3vh;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #D42125;
+}
+
+#wrapper{
+    display: grid;
+    grid-template-rows: 7vh 10vh 25vh 25vh 25vh 25vh 50vh;
+    grid-template-columns: 38vw 38vw;
+    grid-template-areas: 
+        "nav nav"
+        "heading heading"
+        "concept gameplay"
+        "platform gameplay"
+        "theme gameplay"
+        "style gameplay"
+        "screenshot developer"
+        "links links";
+}
+
+@media screen and (max-width: 800px){
+    #wrapper{
+        display: grid;
+        grid-template-rows: 7.5vh 10vh 25vh 25vh 25vh 25vh 100vh 50vh 50vh;
+        grid-template-columns: 76vw;
+        grid-template-areas: 
+            "nav"
+            "heading"
+            "concept"
+            "platform"
+            "theme"
+            "style"
+            "gameplay"
+            "screenshot"
+            "developer";
+        background-color: #68c6e0;
+        padding: 2vw;
+        height: 320vh;
+    }
+}
