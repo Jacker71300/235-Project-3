@@ -1,20 +1,78 @@
-class ColorPeg extends PIXI.Graphics{
-    constructor(x, y, radius, color){
+class Input extends PIXI.Graphics{
+    constructor(x = 0, y = 600, color = 0x999999){
         super();
         this.beginFill(color);
-        this.drawCircle(0, 0, radius);
+        this.drawRect(x, y, 400, 50);
         this.endFill();
         this.x = x;
         this.y = y;
         this.color = color;
-        this.placed = false;
-        this.on("pointerover", e=>e.target.alpha = .7);
-        this.on("pointerup", move);
-        this.on("pointerout", e=>e.currentTarget.alpha = 1.0);
+
+        let color1 = new PIXI.Graphics();
+        let color2 = new PIXI.Graphics();
+        let color3 = new PIXI.Graphics();
+        let color4 = new PIXI.Graphics();
+        let color5 = new PIXI.Graphics();
+        let color6 = new PIXI.Graphics();
+
+        color1.beginFill(0xFF00000);
+        color1.drawCircle(x + 30, y + 25, 20);
+        color1.endFill();
+        
+        color2.beginFill(0xFF8C00);
+        color2.drawCircle(x + 90, y + 25, 20);
+        color2.endFill();
+        
+        color3.beginFill(0xDAFF00);
+        color3.drawCircle(x + 150, y + 25, 20);
+        color3.endFill();
+
+        color4.beginFill(0x00DD00);
+        color4.drawCircle(x + 210, y + 25, 20);
+        color4.endFill();
+        
+        color5.beginFill(0x0000FF);
+        color5.drawCircle(x + 270, y + 25, 20);
+        color5.endFill();
+        
+        color6.beginFill(0x800080);
+        color6.drawCircle(x + 330, y + 25, 20);
+        color6.endFill();
+        
+        this.addChild(color1);
+        this.addChild(color2);
+        this.addChild(color3);
+        this.addChild(color4);
+        this.addChild(color5);
+        this.addChild(color6);
+
+        color1.on("pointerover", e=>e.target.alpha = .7);
+        color1.on("pointerup", this.transferColor);
+        color1.on("pointerout", e=>e.currentTarget.alpha = 1.0);
+
+        color2.on("pointerover", e=>e.target.alpha = .7);
+        color2.on("pointerup", this.transferColor);
+        color2.on("pointerout", e=>e.currentTarget.alpha = 1.0);
+
+        color3.on("pointerover", e=>e.target.alpha = .7);
+        color3.on("pointerup", this.transferColor);
+        color3.on("pointerout", e=>e.currentTarget.alpha = 1.0);
+
+        color4.on("pointerover", e=>e.target.alpha = .7);
+        color4.on("pointerup", this.transferColor);
+        color4.on("pointerout", e=>e.currentTarget.alpha = 1.0);
+
+        color5.on("pointerover", e=>e.target.alpha = .7);
+        color5.on("pointerup", this.transferColor);
+        color5.on("pointerout", e=>e.currentTarget.alpha = 1.0);
+
+        color6.on("pointerover", e=>e.target.alpha = .7);
+        color6.on("pointerup", this.transferColor);
+        color6.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     }
 
-    move(){
-
+    transferColor(){
+        return;
     }
 }
 
@@ -153,7 +211,5 @@ class Key extends PIXI.Graphics{
         this.addChild(peg2);
         this.addChild(peg3);
         this.addChild(peg4);
-
-
     }
 }
