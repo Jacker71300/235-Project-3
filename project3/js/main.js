@@ -28,6 +28,9 @@ function setup(){
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
 
+    let row1 = new Row();
+    menuScene.addChild(row1);
+
     addTextAndButtons();
 }
 
