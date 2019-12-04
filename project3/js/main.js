@@ -53,6 +53,21 @@ function addTextAndButtons(){
 
     createRows(10);
     createKeyAndInput();
+
+    let restartButton = new PIXI.Text("Play Again?");
+    restartButton.style = new PIXI.TextStyle({fill: 0x00FF00,
+        fontSize: 30,
+        fontFamily: "Vernanda",
+        strokeThickness: 6
+    });
+    restartButton.x = 0;
+    restartButton.y = 0;
+    restartButton.interactive = true;
+    restartButton.buttonMode = true;
+    restartButton.on("pointerup",startGame);
+    restartButton.on("pointerover",e=>e.target.slpha = 0.7);
+    restartButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
+    gameOverScene.addChild(restartButton);
 }
 
 function startGame(){
