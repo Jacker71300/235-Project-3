@@ -19,7 +19,7 @@ class ColorPeg extends PIXI.Graphics{
 }
 
 class Row extends PIXI.Graphics{
-    constructor(x = 100, y = 0, color = 0x999999){
+    constructor(x = 100, y = 0, color = 0x00FF00){
         super();
         this.beginFill(color);
         this.drawRect(x, y, 400, 50);
@@ -53,6 +53,11 @@ class Row extends PIXI.Graphics{
         hole2.on("pointerup", colorArray[1] = 0x555555);
         hole3.on("pointerup", colorArray[2] = 0x555555);
         hole4.on("pointerup", colorArray[3] = 0x555555);
+
+        this.addChild(hole1);
+        this.addChild(hole2);
+        this.addChild(hole3);
+        this.addChild(hole4);
     
         let answer1;
         let answer2;
