@@ -51,8 +51,7 @@ function addTextAndButtons(){
     startButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     menuScene.addChild(startButton);
 
-    let row = new Row();
-    gameScene.addChild(row);
+    createRows(10);
 }
 
 function startGame(){
@@ -60,4 +59,11 @@ function startGame(){
     menuScene.visible = false;
     gameOverScene.visible = false;
 
+}
+
+function createRows(num){
+    for(let i = 1; i <= num; i++){
+        let row = new Row(0, sceneHeight - 100 - 50 * i);
+        gameScene.addChild(row);
+    }
 }
