@@ -36,8 +36,8 @@ function setup(){
 
     addTextAndButtons();
 
-    app.ticker.add(gameLoop);
-    app.ticker.start();
+    //app.ticker.add(gameLoop);
+    //app.ticker.start();
 }
 
 function addTextAndButtons(){
