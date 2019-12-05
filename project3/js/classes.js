@@ -39,12 +39,12 @@ class Input extends PIXI.Graphics{
         this.color6.drawCircle(x + 330, y + 25, 20);
         this.color6.endFill();
         
-        this.addChild(color1);
-        this.addChild(color2);
-        this.addChild(color3);
-        this.addChild(color4);
-        this.addChild(color5);
-        this.addChild(color6);
+        this.addChild(this.color1);
+        this.addChild(this.color2);
+        this.addChild(this.color3);
+        this.addChild(this.color4);
+        this.addChild(this.color5);
+        this.addChild(this.color6);
 
         this.color1.interactive = true;
         this.color1.buttonMode = true;
@@ -86,6 +86,7 @@ class Input extends PIXI.Graphics{
     transferColor(row, e){
         for(let i = 0; i < 4; i++){
             if(row.colorArray[i] == 0x555555){
+                console.log(e.color);
                 row.colorArray[i] = e.color;
                 break;
             }
@@ -108,44 +109,44 @@ class Row extends PIXI.Graphics{
         this.hole3 = new PIXI.Graphics();
         this.hole4 = new PIXI.Graphics();
 
-        this.hole1.beginFill(colorArray[0]);
+        this.hole1.beginFill(this.colorArray[0]);
         this.hole1.drawCircle(x + 30, y + 25, 20);
         this.hole1.endFill();
         
-        this.hole2.beginFill(colorArray[1]);
+        this.hole2.beginFill(this.colorArray[1]);
         this.hole2.drawCircle(x + 90, y + 25, 20);
         this.hole2.endFill();
         
-        this.hole3.beginFill(colorArray[2]);
+        this.hole3.beginFill(this.colorArray[2]);
         this.hole3.drawCircle(x + 150, y + 25, 20);
         this.hole3.endFill();
         
-        this.hole4.beginFill(colorArray[3]);
+        this.hole4.beginFill(this.colorArray[3]);
         this.hole4.drawCircle(x + 210, y + 25, 20);
         this.hole4.endFill();
 
         this.hole1.interactive = true;
         this.hole1.buttonMode = true;
         this.hole1.on("pointerover", e=>e.target.alpha = .7)
-        this.hole1.on("pointerup", colorArray[0] = 0x555555);
+        this.hole1.on("pointerup", this.colorArray[0] = 0x555555);
         this.hole1.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         this.hole2.interactive = true;
         this.hole2.buttonMode = true;
         this.hole2.on("pointerover", e=>e.target.alpha = .7)
-        this.hole2.on("pointerup", colorArray[0] = 0x555555);
+        this.hole2.on("pointerup", this.colorArray[0] = 0x555555);
         this.hole2.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         this.hole3.interactive = true;
         this.hole3.buttonMode = true;
         this.hole3.on("pointerover", e=>e.target.alpha = .7)
-        this.hole3.on("pointerup", colorArray[0] = 0x555555);
+        this.hole3.on("pointerup", this.colorArray[0] = 0x555555);
         this.hole3.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         this.hole4.interactive = true;
         this.hole4.buttonMode = true;
         this.hole4.on("pointerover", e=>e.target.alpha = .7)
-        this.hole4.on("pointerup", colorArray[0] = 0x555555);
+        this.hole4.on("pointerup", this.colorArray[0] = 0x555555);
         this.hole4.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     
         this.answer1 = new PIXI.Graphics;
@@ -153,19 +154,19 @@ class Row extends PIXI.Graphics{
         this.answer3 = new PIXI.Graphics;
         this.answer4 = new PIXI.Graphics;
         
-        this.answer1.beginFill(answerArray[0]);
+        this.answer1.beginFill(this.answerArray[0]);
         this.answer1.drawCircle(x + 250, y + 15, 8)
         this.answer1.endFill();
     
-        this.answer2.beginFill(answerArray[1]);
+        this.answer2.beginFill(this.answerArray[1]);
         this.answer2.drawCircle(x + 270, y + 15, 8)
         this.answer2.endFill();
     
-        this.answer3.beginFill(answerArray[2]);
+        this.answer3.beginFill(this.answerArray[2]);
         this.answer3.drawCircle(x + 250, y + 35, 8)
         this.answer3.endFill();
     
-        this.answer4.beginFill(answerArray[3]);
+        this.answer4.beginFill(this.answerArray[3]);
         this.answer4.drawCircle(x + 270, y + 35, 8)
         this.answer4.endFill();
 
@@ -273,19 +274,19 @@ class Key extends PIXI.Graphics{
         this.peg4 = new PIXI.Graphics();
         this.cover = new PIXI.Graphics();
 
-        this.peg1.beginFill(colorArray[0]);
+        this.peg1.beginFill(this.colorArray[0]);
         this.peg1.drawCircle(x + 30, y + 25, 20);
         this.peg1.endFill();
         
-        this.peg2.beginFill(colorArray[1]);
+        this.peg2.beginFill(this.colorArray[1]);
         this.peg2.drawCircle(x + 90, y + 25, 20);
         this.peg2.endFill();
         
-        this.peg3.beginFill(colorArray[2]);
+        this.peg3.beginFill(this.colorArray[2]);
         this.peg3.drawCircle(x + 150, y + 25, 20);
         this.peg3.endFill();
         
-        this.peg4.beginFill(colorArray[3]);
+        this.peg4.beginFill(this.colorArray[3]);
         this.peg4.drawCircle(x + 210, y + 25, 20);
         this.peg4.endFill();
 
@@ -293,14 +294,14 @@ class Key extends PIXI.Graphics{
         this.cover.drawRect(x, y, 300, 50);
         this.cover.endFill();
 
-        this.addChild(peg1);
-        this.addChild(peg2);
-        this.addChild(peg3);
-        this.addChild(peg4);
-        this.addChild(cover);
+        this.addChild(this.peg1);
+        this.addChild(this.peg2);
+        this.addChild(this.peg3);
+        this.addChild(this.peg4);
+        this.addChild(this.cover);
     }
 
     uncover(){
-        this.removeChild(cover);
+        this.removeChild(this.cover);
     }
 }
