@@ -86,6 +86,7 @@ class Input extends PIXI.Graphics{
     transferColor(row, e){
         for(let i = 0; i < 4; i++){
             if(row.colorArray[i] == 0x555555){
+                console.log(e.color);
                 row.colorArray[i] = e.color;
                 break;
             }

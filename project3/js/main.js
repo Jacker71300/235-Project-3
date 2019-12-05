@@ -37,6 +37,7 @@ function setup(){
     addTextAndButtons();
 
     app.ticker.add(gameLoop);
+    app.ticker.start();
 }
 
 function addTextAndButtons(){
@@ -125,6 +126,7 @@ function submit(){
 }
 
 function getCurrentRow(){
+    console.log(rows[currentRow]);
     return rows[currentRow];
 }
 
