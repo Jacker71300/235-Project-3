@@ -48,7 +48,7 @@ function addTextAndButtons(){
         fill: 0x00FF00,
         fontSize: 30,
         fontFamily: "Vernanda",
-        strokeThickness: 6
+        stokeThickness: 6
     });
     startButton.x = 0;
     startButton.y = 0;
