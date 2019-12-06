@@ -24,7 +24,7 @@ function setup(){
     menuScene.visible = true;
     stage.addChild(menuScene);
 
-    console.log(menuScene);
+    //console.log(menuScene);
 
     gameScene = new PIXI.Container();
     gameScene.visible = false;
@@ -108,7 +108,7 @@ function startGame(){
 
 function createRows(num){
     for(let i = 1; i <= num; i++){
-        let row = new Row(0, sceneHeight - 100 - 50 * i);
+        let row = new Row(0, sceneHeight - 400 - 25 * i);
         rows.push(row);
         gameScene.addChild(row);
     }
@@ -117,7 +117,7 @@ function createRows(num){
 function createKeyAndInput(){
     let key = new Key(50, 0);
     gameScene.addChild(key);
-    let input = new Input(0, 0);
+    let input = new Input(0, sceneHeight - 400);
     gameScene.addChild(input);
 }
 
