@@ -138,26 +138,30 @@ class Row extends PIXI.Graphics{
 
         this.hole1.interactive = true;
         this.hole1.buttonMode = true;
-        this.hole1.on("pointerover", e=>e.target.alpha = .7)
-        this.hole1.on("pointerup", this.resetColor(0));
+        this.hole1.instantiating = true;
+        this.hole1.on("pointerover", e=>e.target.alpha = .7);
+        this.hole1.on("pointerup", e=>this.resetColor(0));
         this.hole1.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         this.hole2.interactive = true;
         this.hole2.buttonMode = true;
-        this.hole2.on("pointerover", e=>e.target.alpha = .7)
-        this.hole2.on("pointerup", this.colorArray[1] = 0x555555);
+        this.hole2.instantiating = true;
+        this.hole2.on("pointerover", e=>e.target.alpha = .7);
+        this.hole2.on("pointerup", e=>this.resetColor(1));
         this.hole2.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         this.hole3.interactive = true;
         this.hole3.buttonMode = true;
-        this.hole3.on("pointerover", e=>e.target.alpha = .7)
-        this.hole3.on("pointerup", this.colorArray[2] = 0x555555);
+        this.hole3.instantiating = true;
+        this.hole3.on("pointerover", e=>e.target.alpha = .7);
+        this.hole3.on("pointerup", e=>this.resetColor(2));
         this.hole3.on("pointerout", e=>e.currentTarget.alpha = 1.0);
 
         this.hole4.interactive = true;
         this.hole4.buttonMode = true;
-        this.hole4.on("pointerover", e=>e.target.alpha = .7)
-        this.hole4.on("pointerup", this.colorArray[3] = 0x555555);
+        this.hole4.instantiating = true;
+        this.hole4.on("pointerover", e=>e.target.alpha = .7);
+        this.hole4.on("pointerup", e=>this.resetColor(3));
         this.hole4.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     
         this.answer1 = new PIXI.Graphics;
@@ -237,6 +241,7 @@ class Row extends PIXI.Graphics{
 
     resetColor(index){
         this.colorArray[index] = 0x555555;
+        this.updateColors();
     }
 }
 
