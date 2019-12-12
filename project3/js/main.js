@@ -1,5 +1,5 @@
 "use strict";
-const app = new PIXI.Application(600,740);
+const app = new PIXI.Application(600,700);
 let container = document.querySelector("#gamespace");
 container.appendChild(app.view);
 
