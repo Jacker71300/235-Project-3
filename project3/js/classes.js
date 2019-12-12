@@ -198,15 +198,16 @@ class Row extends PIXI.Graphics{
     compareRow(key){
         let checked = [false, false, false, false];
 
-        for(let i = 0; i < 4; i++){
-            if(this.colorArray[i] == key.colorArray[i]){
-                checked[i] = true;
+        //check for direct matches
+        for(let c = 0; c < 4; c++){
+            if(this.colorArray[c] == key.colorArray[c]){
+                checked[c] = true;
 
                 //loop through answers for first empty slot
                 //make it black
-                for(let j = 0; j < 4; j++){
-                    if(this.answerArray[i] == 0x555555){
-                        this.answerArray[i] = 0x000000;
+                for(let a = 0; a < 4; a++){
+                    if(this.answerArray[a] == 0x555555){
+                        this.answerArray[a] = 0x000000;
                         break;
                     }
                 }
@@ -214,34 +215,51 @@ class Row extends PIXI.Graphics{
         }
 
         //first, loop through colorArray
-        //if checked[i], then this is already a black, move on
-        for(let i = 0; i < 4; i++){
-            if(checked[i]){
-                continue;
-            }
-            
+        //if checked[c], then this is already a black, move on
+        for(let c = 0; c < 4; c++){
             //now loop through the key
             //if checked, move on to net color in key
-            for(let j = 0; j < 4; j++){
-                if(checked[j]){
+            for(let k = 0; k < 4; k++){
+                if(checked[k]){
                     continue;
                 }
                 //otherwise, check if there's a misplaced color
-                else if(this.colorArray[i] == key.colorArray[j]){
+                else if(this.colorArray[c] == key.colorArray[k]){
                     //if there is, find where to change the color in the answerArray
-                    for(let k = 0; k < 4; k++){
-                        if(this.answerArray[i] == 0x555555){
-                            this.answerArray[i] = 0xFFFFFF;
+                    checked[k] = true;
+                    for(let a = 0; a < 4; a++){
+                        if(this.answerArray[a] == 0x555555){
+                            this.answerArray[a] = 0xFFFFFF;
+                            break;
                         }
                     }
+                    continue;
                 }
             }
         }
+        this.updateColors();
     }
 
     resetColor(index){
         this.colorArray[index] = 0x555555;
         this.updateColors();
+    }
+
+    isComplete(){
+        for(let r = 0; r < 4; r++){
+            if(this.colorArray[r] == 0x555555){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    didPlayerWin(){
+        if(this.answerArray[3] == 0x000000){
+            return true;
+        }
+        return false;
     }
 }
 
@@ -298,7 +316,7 @@ class Key extends PIXI.Graphics{
         this.peg4.drawCircle(x + 210, y + 25, 20);
         this.peg4.endFill();
 
-        this.cover.beginFill(this.color);
+        this.cover.beginFill(color);
         this.cover.drawRect(x, y, 300, 50);
         this.cover.endFill();
 
@@ -306,7 +324,7 @@ class Key extends PIXI.Graphics{
         this.addChild(this.peg2);
         this.addChild(this.peg3);
         this.addChild(this.peg4);
-        this.addChild(this.cover);
+        //this.addChild(this.cover);
     }
 
     uncover(){

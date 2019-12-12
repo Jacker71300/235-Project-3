@@ -13,6 +13,7 @@ let gameScene;
 let gameOverScene;
 let rows = [];
 let currentRow = 0;
+let key
 
 setup();
 
@@ -71,7 +72,7 @@ function addTextAndButtons(){
         fontFamily: "Vernanda",
         strokeThickness: 6
     });
-    submitButton.x = 200;
+    submitButton.x = 300;
     submitButton.y = sceneHeight - 100;
     submitButton.interactive = true;
     submitButton.buttonMode = true;
@@ -115,23 +116,40 @@ function createRows(num){
 }
 
 function createKeyAndInput(){
-    let key = new Key(50, 0);
+    key = new Key(50, 0);
     gameScene.addChild(key);
     let input = new Input(0, sceneHeight - 400);
     gameScene.addChild(input);
 }
 
 function submit(){
-    currentRow++;
+    console.log(currentRow);
+    if(rows[currentRow].isComplete()){
+        rows[currentRow].compareRow(key);
+        if(rows[currentRow].didPlayerWin()){
+            console.log("win");
+            endGameWin();
+        }
+        else if(currentRow == rows.length){
+            console.log("lose");
+            endGameLose();
+        }
+        else{
+            currentRow++;
+        }
+    }
 }
 
 function getCurrentRow(){
+    console.log(currentRow);
     console.log(rows[currentRow]);
     return rows[currentRow];
 }
 
-function gameLoop(){
-    rows.forEach(row => {
-        row.updateColors();
-    });
+function endGameWin(){
+    key.uncover();
+}
+
+function endGameLose(){
+    
 }
