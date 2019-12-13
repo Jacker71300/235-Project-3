@@ -1,3 +1,4 @@
+// Class for the input objects on the bottom of the screen
 class Input extends PIXI.Graphics{
     constructor(x = 0, y = 600, color = 0x999999){
         super();
@@ -115,9 +116,9 @@ class Input extends PIXI.Graphics{
     transferColor(row, color){
         for(let i = 0; i < 4; i++){
             if(row.colorArray[i] == 0x555555){
-                console.log("Before: " + i + "-" + row.colorArray[i]);
+                //console.log("Before: " + i + "-" + row.colorArray[i]);
                 row.colorArray[i] = color;
-                console.log("After: " + i + "-" + + row.colorArray[i]);
+                //console.log("After: " + i + "-" + + row.colorArray[i]);
                 break;
             }
         }
@@ -282,7 +283,6 @@ class Row extends PIXI.Sprite{
         }
 
         //first, loop through colorArray
-        //if checked[c], then this is already a black, move on
         for(let c = 0; c < 4; c++){
             //now loop through the key
             //if checked, move on to net color in key
@@ -300,7 +300,7 @@ class Row extends PIXI.Sprite{
                             break;
                         }
                     }
-                    continue;
+                    break;
                 }
             }
         }
@@ -419,7 +419,7 @@ class Key extends PIXI.Graphics{
     }
 
     uncover(){
-        console.log("win");
+        //console.log("win");
         this.removeChild(this.cover);
     }
 }

@@ -43,6 +43,7 @@ function setup(){
     stage.addChild(rule2Scene);
     stage.addChild(rule3Scene);
 
+    // Create scenes
     gameScene = new PIXI.Container();
     gameScene.visible = false;
     stage.addChild(gameScene);
@@ -61,6 +62,7 @@ function setup(){
     //app.ticker.start();
 }
 
+// Creates the functions for the buttons in each scene
 function addTextAndButtons(){
     let menuPhoto = PIXI.Sprite.fromImage("images/MainMenu.png");
     menuScene.addChild(menuPhoto);
@@ -176,6 +178,7 @@ function addTextAndButtons(){
     gameLossScene.addChild(failButton);
 }
 
+// Start the game scene
 function startGame(){
     gameScene.visible = true;
     rule1Scene.visible = false;
@@ -185,6 +188,7 @@ function startGame(){
     gameOverScene.visible = false;
 }
 
+// Show the rules scene
 function showRules(){
     gameScene.visible = false;
     rule1Scene.visible = true;
@@ -194,6 +198,7 @@ function showRules(){
     gameOverScene.visible = false;
 }
 
+// Cycle through the rules
 function cycleRules(){
     if(rule1Scene.visible){
         rule1Scene.visible = false;
@@ -209,6 +214,7 @@ function cycleRules(){
     }
 }
 
+// Create rows of input options
 function createRows(num){
     for(let i = 1; i <= num; i++){
         let row = new Row(sceneWidth / 10, sceneHeight - 370 - 31 * i);
@@ -217,6 +223,7 @@ function createRows(num){
     }
 }
 
+// Create the inputs and the key at the top
 function createKeyAndInput(){
     key = new Key(sceneWidth / 5, 0);
     gameScene.addChild(key);
@@ -224,16 +231,17 @@ function createKeyAndInput(){
     gameScene.addChild(input);
 }
 
+// Submit a guess
 function submit(){
-    console.log(currentRow);
+    //console.log(currentRow);
     if(rows[currentRow].isComplete()){
         rows[currentRow].compareRow(key);
         if(rows[currentRow].didPlayerWin()){
-            console.log("win");
+            //console.log("win");
             endGameWin();
         }
         else if(currentRow == rows.length - 1){
-            console.log("lose");
+            //console.log("lose");
             endGameLose();
         }
         else{
@@ -242,26 +250,31 @@ function submit(){
     }
 }
 
+// Returns the currently active row
 function getCurrentRow(){
-    console.log(currentRow);
-    console.log(rows[currentRow]);
+    //console.log(currentRow);
+    //console.log(rows[currentRow]);
     return rows[currentRow];
 }
 
+// Handles what happens when the game is won
 function endGameWin(){
     key.uncover();
     gameOverScene.visible = true;
 }
 
+// Handles what happens when the game is lost
 function endGameLose(){
     key.uncover();
     gameLossScene.visible = true;
 }
 
+// Unused
 function endGame(){
     
 }
 
+// Restarts all the objects and resets the funcationality of everything
 function restartGame(){
     while(stage.children[0])
         stage.removeChild(stage.children[0]);
