@@ -1,5 +1,5 @@
 "use strict";
-const app = new PIXI.Application(600,720);
+const app = new PIXI.Application(600,680);
 let container = document.querySelector("#gamespace");
 container.appendChild(app.view);
 
@@ -17,6 +17,7 @@ let gameOverScene;
 let rows = [];
 let currentRow = 0;
 let key
+let submitButton;
 
 setup();
 
@@ -26,8 +27,6 @@ function setup(){
 
     menuScene = new PIXI.Container();
     menuScene.visible = true;
-    let menuPhoto = PIXI.Sprite.fromImage("images/MainMenu.png");
-    menuScene.addChild(menuPhoto);
     stage.addChild(menuScene);
 
     //console.log(menuScene);
@@ -39,12 +38,6 @@ function setup(){
     rule2Scene.visible = false;
     rule3Scene = new PIXI.Container();
     rule3Scene.visible = false;
-    let rule1Photo = PIXI.Sprite.fromImage("images/Rules1.png");
-    let rule2Photo = PIXI.Sprite.fromImage("images/Rules2.png");
-    let rule3Photo = PIXI.Sprite.fromImage("images/Rules3.png");
-    rule1Scene.addChild(rule1Photo);
-    rule2Scene.addChild(rule2Photo);
-    rule3Scene.addChild(rule3Photo);
     stage.addChild(rule1Scene);
     stage.addChild(rule2Scene);
     stage.addChild(rule3Scene);
@@ -64,6 +57,16 @@ function setup(){
 }
 
 function addTextAndButtons(){
+    let menuPhoto = PIXI.Sprite.fromImage("images/MainMenu.png");
+    menuScene.addChild(menuPhoto);
+
+    // Create backgrounds for rules
+    let rule1Photo = PIXI.Sprite.fromImage("images/Rules1.png");
+    let rule2Photo = PIXI.Sprite.fromImage("images/Rules2.png");
+    let rule3Photo = PIXI.Sprite.fromImage("images/Rules3.png");
+    rule1Scene.addChild(rule1Photo);
+    rule2Scene.addChild(rule2Photo);
+    rule3Scene.addChild(rule3Photo);
 
     // Create start button for main menu
     let startButton = PIXI.Sprite.fromImage("images/StartButton.png");
@@ -123,20 +126,18 @@ function addTextAndButtons(){
     nextButton3.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     rule3Scene.addChild(nextButton3);
 
-    // Create the rows and input for game scene
-    createRows(10);
+    // Create the rows and SS for game scene
+    let background = new PIXI.Graphics();
+    background.beginFill(0x222222);
+    background.drawRect(0, 0, sceneWidth, sceneHeight);
+    gameScene.addChild(background);
+    createRows(9);
     createKeyAndInput();
 
     // Create submit button for game scene
-    let submitButton = new PIXI.Text("Submit");
-    submitButton.style = new PIXI.TextStyle({
-        fill: 0x00FF00,
-        fontSize: 30,
-        fontFamily: "Vernanda",
-        strokeThickness: 6
-    });
-    submitButton.x = 300;
-    submitButton.y = sceneHeight - 100;
+    submitButton = PIXI.Sprite.fromImage("images/SubmitButton.png");
+    submitButton.x = 430;
+    submitButton.y = sceneHeight - 55;
     submitButton.interactive = true;
     submitButton.buttonMode = true;
     submitButton.on("pointerup",submit);
@@ -144,23 +145,19 @@ function addTextAndButtons(){
     submitButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     gameScene.addChild(submitButton);
 
+    // Create the game over scene
+    
 
     // Create restart button for game over scene
-    let restartButton = new PIXI.Text("Play Again?");
-    restartButton.style = new PIXI.TextStyle({
-        fill: 0x00FF00,
-        fontSize: 30,
-        fontFamily: "Vernanda",
-        strokeThickness: 6
-    });
-    restartButton.x = 0;
-    restartButton.y = 0;
+    let restartButton = PIXI.Sprite.fromImage("images/AgainButton.png");
+    restartButton.position.set(sceneWidth / 4, sceneHeight/3);
     restartButton.interactive = true;
     restartButton.buttonMode = true;
-    restartButton.on("pointerup",startGame);
-    restartButton.on("pointerover",e=>e.target.slpha = 0.7);
+    restartButton.on("pointerup",restartGame);
+    restartButton.on("pointerover",e=>e.target.alpha = 0.7);
     restartButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
-    gameOverScene.addChild(restartButton);
+    
+    gameOverScene.addChild(restartButton);   
 }
 
 function startGame(){
@@ -198,16 +195,16 @@ function cycleRules(){
 
 function createRows(num){
     for(let i = 1; i <= num; i++){
-        let row = new Row(0, sceneHeight - 380 - 31 * i);
+        let row = new Row(sceneWidth / 10, sceneHeight - 370 - 31 * i);
         rows.push(row);
         gameScene.addChild(row);
     }
 }
 
 function createKeyAndInput(){
-    key = new Key(0, 0);
+    key = new Key(sceneWidth / 5, 0);
     gameScene.addChild(key);
-    let input = new Input(0, sceneHeight - 375);
+    let input = new Input(sceneWidth / 10, sceneHeight - 370);
     gameScene.addChild(input);
 }
 
@@ -219,7 +216,7 @@ function submit(){
             console.log("win");
             endGameWin();
         }
-        else if(currentRow == rows.length){
+        else if(currentRow == rows.length - 1){
             console.log("lose");
             endGameLose();
         }
@@ -237,8 +234,20 @@ function getCurrentRow(){
 
 function endGameWin(){
     key.uncover();
+    gameOverScene.visible = true;
 }
 
 function endGameLose(){
+    key.uncover();
+    gameOverScene.visible = true;
+}
+
+function endGame(){
     
+}
+
+function restartGame(){
+    while(stage.children[0])
+        stage.removeChild(stage.children[0]);
+    setup();
 }
