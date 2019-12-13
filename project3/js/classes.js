@@ -24,44 +24,44 @@ class Input extends PIXI.Graphics{
         // this.color1.beginFill(0xFF00000);
         // this.color1.drawCircle(x + 30, y + 25, 20);
         // this.color1.endFill();
-        this.color1.position.x = x + 30;
-        this.color1.position.y = y + 25;
+        this.color1.position.x = this.x + 30;
+        this.color1.position.y = this.y + 25;
         this.color1.tint = 0xFF00000;
         
         // this.color2.beginFill(0xFF8C00);
         // this.color2.drawCircle(x + 90, y + 25, 20);
         // this.color2.endFill();
-        this.color1.position.x = x + 90;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0xFF8C00;
+        this.color2.position.x = this.x + 90;
+        this.color2.position.y = this.y + 25;
+        this.color2.tint = 0xFF8C00;
         
         // this.color3.beginFill(0xDAFF00);
         // this.color3.drawCircle(x + 150, y + 25, 20);
         // this.color3.endFill();
-        this.color1.position.x = x + 150;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0xDAFF00;
+        this.color3.position.x = this.x + 150;
+        this.color3.position.y = this.y + 25;
+        this.color3.tint = 0xDAFF00;
 
         // this.color4.beginFill(0x00DD00);
         // this.color4.drawCircle(x + 210, y + 25, 20);
         // this.color4.endFill();
-        this.color1.position.x = x + 210;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0x00DD00;
+        this.color4.position.x = this.x + 210;
+        this.color4.position.y = this.y + 25;
+        this.color4.tint = 0x00DD00;
         
         // this.color5.beginFill(0x0000FF);
         // this.color5.drawCircle(x + 270, y + 25, 20);
         // this.color5.endFill();
-        this.color1.position.x = x + 270;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0x0000FF;
+        this.color5.position.x = this.x + 270;
+        this.color5.position.y = this.y + 25;
+        this.color5.tint = 0x0000FF;
         
         // this.color6.beginFill(0x800080);
         // this.color6.drawCircle(x + 330, y + 25, 20);
         // this.color6.endFill();
-        this.color1.position.x = x + 30;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0x800080;
+        this.color6.position.x = this.x + 330;
+        this.color6.position.y = this.y + 25;
+        this.color6.tint = 0x800080;
         
         this.addChild(this.color1);
         this.addChild(this.color2);
@@ -159,23 +159,23 @@ class Row extends PIXI.Graphics{
         // this.hole2.beginFill(this.colorArray[1]);
         // this.hole2.drawCircle(this.x + 90, this.y + 25, 20);
         // this.hole2.endFill();
-        this.hole2.position.x = this.x + 30;
+        this.hole2.position.x = this.x + 90;
         this.hole2.position.y = this.y + 25;
-        this.hole2.tint = this.colorArray[0];
+        this.hole2.tint = this.colorArray[1];
         
         // this.hole3.beginFill(this.colorArray[2]);
         // this.hole3.drawCircle(this.x + 150, this.y + 25, 20);
         // this.hole3.endFill();
-        this.hole3.position.x = this.x + 30;
+        this.hole3.position.x = this.x + 150;
         this.hole3.position.y = this.y + 25;
-        this.hole3.tint = this.colorArray[0];
+        this.hole3.tint = this.colorArray[2];
         
         // this.hole4.beginFill(this.colorArray[3]);
         // this.hole4.drawCircle(this.x + 210, this.y + 25, 20);
         // this.hole4.endFill();
-        this.hole4.position.x = this.x + 30;
+        this.hole4.position.x = this.x + 210;
         this.hole4.position.y = this.y + 25;
-        this.hole4.tint = this.colorArray[0];
+        this.hole4.tint = this.colorArray[3];
 
         this.hole1.interactive = true;
         this.hole1.buttonMode = true;
