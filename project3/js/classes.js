@@ -21,6 +21,7 @@ class Input extends PIXI.Graphics{
         this.color4.anchor.set(0.5,0.5);
         this.color5.anchor.set(0.5,0.5);
         this.color6.anchor.set(0.5,0.5);
+
         // this.color1.beginFill(0xFF00000);
         // this.color1.drawCircle(x + 30, y + 25, 20);
         // this.color1.endFill();
@@ -31,37 +32,37 @@ class Input extends PIXI.Graphics{
         // this.color2.beginFill(0xFF8C00);
         // this.color2.drawCircle(x + 90, y + 25, 20);
         // this.color2.endFill();
-        this.color1.position.x = x + 90;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0xFF8C00;
+        this.color2.position.x = x + 90;
+        this.color2.position.y = y + 25;
+        this.color2.tint = 0xFF8C00;
         
         // this.color3.beginFill(0xDAFF00);
         // this.color3.drawCircle(x + 150, y + 25, 20);
         // this.color3.endFill();
-        this.color1.position.x = x + 150;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0xDAFF00;
+        this.color3.position.x = x + 150;
+        this.color3.position.y = y + 25;
+        this.color3.tint = 0xDAFF00;
 
         // this.color4.beginFill(0x00DD00);
         // this.color4.drawCircle(x + 210, y + 25, 20);
         // this.color4.endFill();
-        this.color1.position.x = x + 210;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0x00DD00;
+        this.color4.position.x = x + 210;
+        this.color4.position.y = y + 25;
+        this.color4.tint = 0x00DD00;
         
         // this.color5.beginFill(0x0000FF);
         // this.color5.drawCircle(x + 270, y + 25, 20);
         // this.color5.endFill();
-        this.color1.position.x = x + 270;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0x0000FF;
+        this.color5.position.x = x + 270;
+        this.color5.position.y = y + 25;
+        this.color5.tint = 0x0000FF;
         
         // this.color6.beginFill(0x800080);
         // this.color6.drawCircle(x + 330, y + 25, 20);
         // this.color6.endFill();
-        this.color1.position.x = x + 30;
-        this.color1.position.y = y + 25;
-        this.color1.tint = 0x800080;
+        this.color6.position.x = x + 30;
+        this.color6.position.y = y + 25;
+        this.color6.tint = 0x800080;
         
         this.addChild(this.color1);
         this.addChild(this.color2);
@@ -121,16 +122,24 @@ class Input extends PIXI.Graphics{
     }
 }
 
-class Row extends PIXI.Graphics{
+class Row extends PIXI.Sprite{
     constructor(x = 100, y = 55, color = 0x999999){
         super();
-        this.beginFill(color);
-        this.drawRect(x, y, 400, 50);
-        this.endFill();
+        // this.beginFill(color);
+        // this.drawRect(x, y, 400, 50);
+        // this.endFill();
+
+        this.row = PIXI.Sprite.fromImage("images/Row.png");
+        this.row.anchor.set(0,0);
+        this.row.position.x = x;
+        this.row.position.y = y;
+        this.addChild(this.row);
+
 
         this.x = x;
         this.y = y;
         this.color = color;
+        
 
         this.colorArray = [0x555555, 0x555555, 0x555555, 0x555555];
         this.answerArray = [0x555555, 0x555555, 0x555555, 0x555555];
@@ -152,30 +161,26 @@ class Row extends PIXI.Graphics{
         // this.hole1.beginFill(this.colorArray[0]);
         // this.hole1.drawCircle(this.x + 30, this.y + 25, 20);
         // this.hole1.endFill();
-        this.hole1.position.x = this.x + 30;
-        this.hole1.position.y = this.y + 25;
+        this.hole1.position.set(this.x + 30, this.y + 30);
         this.hole1.tint = this.colorArray[0];
         
         // this.hole2.beginFill(this.colorArray[1]);
         // this.hole2.drawCircle(this.x + 90, this.y + 25, 20);
         // this.hole2.endFill();
-        this.hole2.position.x = this.x + 30;
-        this.hole2.position.y = this.y + 25;
-        this.hole2.tint = this.colorArray[0];
+        this.hole2.position.set(this.x + 90, this.y + 30);
+        this.hole2.tint = this.colorArray[1];
         
         // this.hole3.beginFill(this.colorArray[2]);
         // this.hole3.drawCircle(this.x + 150, this.y + 25, 20);
         // this.hole3.endFill();
-        this.hole3.position.x = this.x + 30;
-        this.hole3.position.y = this.y + 25;
-        this.hole3.tint = this.colorArray[0];
+        this.hole3.position.set(this.x + 150, this.y + 30);
+        this.hole3.tint = this.colorArray[2];
         
         // this.hole4.beginFill(this.colorArray[3]);
         // this.hole4.drawCircle(this.x + 210, this.y + 25, 20);
         // this.hole4.endFill();
-        this.hole4.position.x = this.x + 30;
-        this.hole4.position.y = this.y + 25;
-        this.hole4.tint = this.colorArray[0];
+        this.hole4.position.set(this.x + 210, this.y + 30);
+        this.hole4.tint = this.colorArray[3];
 
         this.hole1.interactive = true;
         this.hole1.buttonMode = true;
@@ -205,26 +210,43 @@ class Row extends PIXI.Graphics{
         this.hole4.on("pointerup", e=>this.resetColor(3));
         this.hole4.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     
-        this.answer1 = new PIXI.Graphics;
-        this.answer2 = new PIXI.Graphics;
-        this.answer3 = new PIXI.Graphics;
-        this.answer4 = new PIXI.Graphics;
+        this.answer1 = PIXI.Sprite.fromImage("images/Light.png");
+        this.answer2 = PIXI.Sprite.fromImage("images/Light.png");
+        this.answer3 = PIXI.Sprite.fromImage("images/Light.png");
+        this.answer4 = PIXI.Sprite.fromImage("images/Light.png");
         
-        this.answer1.beginFill(this.answerArray[0]);
-        this.answer1.drawCircle(this.x + 250, this.y + 15, 8)
-        this.answer1.endFill();
-    
-        this.answer2.beginFill(this.answerArray[1]);
-        this.answer2.drawCircle(this.x + 270, this.y + 15, 8)
-        this.answer2.endFill();
-    
-        this.answer3.beginFill(this.answerArray[2]);
-        this.answer3.drawCircle(this.x + 250, this.y + 35, 8)
-        this.answer3.endFill();
-    
-        this.answer4.beginFill(this.answerArray[3]);
-        this.answer4.drawCircle(this.x + 270, this.y + 35, 8)
-        this.answer4.endFill();
+        // this.answer1.beginFill(this.answerArray[0]);
+        // this.answer1.drawCircle(this.x + 250, this.y + 15, 8)
+        // this.answer1.endFill();
+        this.answer1.scale.set(0.25);
+        this.answer1.anchor.set(0.5,0.5);
+        this.answer1.position.set(this.x + 260, this.y + 20);
+        this.answer1.tint = this.answerArray[0];
+
+        // this.answer2.beginFill(this.answerArray[1]);
+        // this.answer2.drawCircle(this.x + 270, this.y + 15, 8)
+        // this.answer2.endFill();
+        this.answer2.scale.set(0.25);
+        this.answer2.anchor.set(0.5,0.5);
+        this.answer2.position.set(this.x + 280, this.y + 20);
+        this.answer2.tint = this.answerArray[1];
+
+
+        // this.answer3.beginFill(this.answerArray[2]);
+        // this.answer3.drawCircle(this.x + 250, this.y + 35, 8)
+        // this.answer3.endFill();
+        this.answer3.scale.set(0.25);
+        this.answer3.anchor.set(0.5,0.5);
+        this.answer3.position.set(this.x + 260, this.y + 40);
+        this.answer3.tint = this.answerArray[2];
+
+        // this.answer4.beginFill(this.answerArray[3]);
+        // this.answer4.drawCircle(this.x + 270, this.y + 35, 8)
+        // this.answer4.endFill();
+        this.answer4.scale.set(0.25);
+        this.answer4.anchor.set(0.5,0.5);
+        this.answer4.position.set(this.x + 280, this.y + 40);
+        this.answer4.tint = this.answerArray[3];
 
         this.addChild(this.hole1);
         this.addChild(this.hole2);
@@ -248,7 +270,7 @@ class Row extends PIXI.Graphics{
                 //make it black
                 for(let a = 0; a < 4; a++){
                     if(this.answerArray[a] == 0x555555){
-                        this.answerArray[a] = 0x000000;
+                        this.answerArray[a] = 0xFFFFFF;
                         break;
                     }
                 }
@@ -270,7 +292,7 @@ class Row extends PIXI.Graphics{
                     checked[k] = true;
                     for(let a = 0; a < 4; a++){
                         if(this.answerArray[a] == 0x555555){
-                            this.answerArray[a] = 0xFFFFFF;
+                            this.answerArray[a] = 0x888843;
                             break;
                         }
                     }
@@ -307,9 +329,14 @@ class Row extends PIXI.Graphics{
 class Key extends PIXI.Graphics{
     constructor(x = 150, y = 0, color = 0x999999){
         super();
-        this.beginFill(color);
-        this.drawRect(x, y, 300, 50);
-        this.endFill();
+        // this.beginFill(color);
+        // this.drawRect(x, y, 300, 50);
+        // this.endFill();
+
+        this.row = PIXI.Sprite.fromImage("images/Row.png");
+        this.row.position.set(x, y);
+        this.addChild(this.row);
+
         this.colorArray = [];
 
         for(let i = 0; i < 4; i++){
@@ -339,7 +366,7 @@ class Key extends PIXI.Graphics{
         this.peg2 = PIXI.Sprite.fromImage("images/Light.png");
         this.peg3 = PIXI.Sprite.fromImage("images/Light.png");
         this.peg4 = PIXI.Sprite.fromImage("images/Light.png");
-        this.cover = PIXI.Sprite.fromImage("images/Light.png");
+        this.cover = PIXI.Sprite.fromImage("images/Row.png");
 
         this.peg1.anchor.set(0.5,0.5);
         this.peg2.anchor.set(0.5,0.5);
@@ -350,39 +377,41 @@ class Key extends PIXI.Graphics{
         // this.peg1.drawCircle(x + 30, y + 25, 20);
         // this.peg1.endFill();
         this.peg1.position.x = x + 30;
-        this.peg1.position.y = y + 25;
+        this.peg1.position.y = y + 30;
         this.peg1.tint = this.colorArray[0];
         
         // this.peg2.beginFill(this.colorArray[1]);
         // this.peg2.drawCircle(x + 90, y + 25, 20);
         // this.peg2.endFill();
         this.peg2.position.x = x + 90;
-        this.peg2.position.y = y + 25;
+        this.peg2.position.y = y + 30;
         this.peg2.tint = this.colorArray[1];
         
         // this.peg3.beginFill(this.colorArray[2]);
         // this.peg3.drawCircle(x + 150, y + 25, 20);
         // this.peg3.endFill();
         this.peg3.position.x = x + 150;
-        this.peg3.position.y = y + 25;
+        this.peg3.position.y = y + 30;
         this.peg3.tint = this.colorArray[2];
         
         // this.peg4.beginFill(this.colorArray[3]);
         // this.peg4.drawCircle(x + 210, y + 25, 20);
         // this.peg4.endFill();
         this.peg4.position.x = x + 210;
-        this.peg4.position.y = y + 25;
+        this.peg4.position.y = y + 30;
         this.peg4.tint = this.colorArray[3];
 
         // this.cover.beginFill(color);
         // this.cover.drawRect(x, y, 300, 50);
         // this.cover.endFill();
+        this.cover.position.set(x, y);
+
 
         this.addChild(this.peg1);
         this.addChild(this.peg2);
         this.addChild(this.peg3);
         this.addChild(this.peg4);
-        //this.addChild(this.cover);
+        this.addChild(this.cover);
     }
 
     uncover(){

@@ -1,5 +1,5 @@
 "use strict";
-const app = new PIXI.Application(600,700);
+const app = new PIXI.Application(600,720);
 let container = document.querySelector("#gamespace");
 container.appendChild(app.view);
 
@@ -109,16 +109,16 @@ function startGame(){
 
 function createRows(num){
     for(let i = 1; i <= num; i++){
-        let row = new Row(0, sceneHeight - 400 - 25 * i);
+        let row = new Row(0, sceneHeight - 380 - 31 * i);
         rows.push(row);
         gameScene.addChild(row);
     }
 }
 
 function createKeyAndInput(){
-    key = new Key(50, 0);
+    key = new Key(0, 0);
     gameScene.addChild(key);
-    let input = new Input(0, sceneHeight - 400);
+    let input = new Input(0, sceneHeight - 375);
     gameScene.addChild(input);
 }
 
