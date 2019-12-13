@@ -5,8 +5,10 @@ h1 {
 }
 
 #gamespace {
-    height: 77vh;
+    height: 700px;
     background-color: #ccc;
+    align-self: center;
+    margin: 0 auto;
 }
 
 body{
@@ -19,7 +21,6 @@ body{
 #wrapper{
     background-color: #68c6e0;
     padding: 2vw;
-    height: 95vh;
 }
 
 ul {

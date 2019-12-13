@@ -25,43 +25,43 @@ class Input extends PIXI.Graphics{
         // this.color1.beginFill(0xFF00000);
         // this.color1.drawCircle(x + 30, y + 25, 20);
         // this.color1.endFill();
-        this.color1.position.x = x + 30;
-        this.color1.position.y = y + 25;
+        this.color1.position.x = this.x + 30;
+        this.color1.position.y = this.y + 25;
         this.color1.tint = 0xFF00000;
         
         // this.color2.beginFill(0xFF8C00);
         // this.color2.drawCircle(x + 90, y + 25, 20);
         // this.color2.endFill();
-        this.color2.position.x = x + 90;
-        this.color2.position.y = y + 25;
+        this.color2.position.x = this.x + 77;
+        this.color2.position.y = this.y + 25;
         this.color2.tint = 0xFF8C00;
         
         // this.color3.beginFill(0xDAFF00);
         // this.color3.drawCircle(x + 150, y + 25, 20);
         // this.color3.endFill();
-        this.color3.position.x = x + 150;
-        this.color3.position.y = y + 25;
+        this.color3.position.x = this.x + 124;
+        this.color3.position.y = this.y + 25;
         this.color3.tint = 0xDAFF00;
 
         // this.color4.beginFill(0x00DD00);
         // this.color4.drawCircle(x + 210, y + 25, 20);
         // this.color4.endFill();
-        this.color4.position.x = x + 210;
-        this.color4.position.y = y + 25;
+        this.color4.position.x = this.x + 171;
+        this.color4.position.y = this.y + 25;
         this.color4.tint = 0x00DD00;
         
         // this.color5.beginFill(0x0000FF);
         // this.color5.drawCircle(x + 270, y + 25, 20);
         // this.color5.endFill();
-        this.color5.position.x = x + 270;
-        this.color5.position.y = y + 25;
+        this.color5.position.x = this.x + 218;
+        this.color5.position.y = this.y + 25;
         this.color5.tint = 0x0000FF;
         
         // this.color6.beginFill(0x800080);
         // this.color6.drawCircle(x + 330, y + 25, 20);
         // this.color6.endFill();
-        this.color6.position.x = x + 30;
-        this.color6.position.y = y + 25;
+        this.color6.position.x = this.x + 265;
+        this.color6.position.y = this.y + 25;
         this.color6.tint = 0x800080;
         
         this.addChild(this.color1);
