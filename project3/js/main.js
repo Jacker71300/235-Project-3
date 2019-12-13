@@ -14,6 +14,7 @@ let rule2Scene;
 let rule3Scene;
 let gameScene;
 let gameOverScene;
+let gameLossScene;
 let rows = [];
 let currentRow = 0;
 let key
@@ -49,6 +50,10 @@ function setup(){
     gameOverScene = new PIXI.Container();
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
+
+    gameLossScene = new PIXI.Container();
+    gameLossScene.visible = false;
+    stage.addChild(gameLossScene);
 
     addTextAndButtons();
 
@@ -157,7 +162,18 @@ function addTextAndButtons(){
     restartButton.on("pointerover",e=>e.target.alpha = 0.7);
     restartButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     
-    gameOverScene.addChild(restartButton);   
+    gameOverScene.addChild(restartButton);
+    
+    let failButton = PIXI.Sprite.fromImage("images/LoseButton.png");
+    failButton.position.set(sceneWidth / 4, sceneHeight/3);
+    failButton.interactive = true;
+    failButton.buttonMode = true;
+    failButton.on("pointerup",restartGame);
+    failButton.on("pointerover",e=>e.target.alpha = 0.7);
+    failButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
+    failButton.scale.set(.34);
+    
+    gameLossScene.addChild(failButton);
 }
 
 function startGame(){
@@ -239,7 +255,7 @@ function endGameWin(){
 
 function endGameLose(){
     key.uncover();
-    gameOverScene.visible = true;
+    gameLossScene.visible = true;
 }
 
 function endGame(){
@@ -249,5 +265,8 @@ function endGame(){
 function restartGame(){
     while(stage.children[0])
         stage.removeChild(stage.children[0]);
+    
+    rows = [];
+    currentRow = 0;
     setup();
 }
