@@ -255,9 +255,10 @@ function createKeyAndInput(){
 
 // Submit a guess
 function submit(){
-    submitSound.play();
 
     if(rows[currentRow].isComplete()){
+        submitSound.play();
+
         rows[currentRow].compareRow(key);
         if(rows[currentRow].didPlayerWin()){
             endGameWin();
