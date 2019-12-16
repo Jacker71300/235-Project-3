@@ -33,8 +33,15 @@ let clickSound = new Howl({
 
 let submitSound = new Howl({
     src:['media/submit.mp3']
-})
+});
 
+let lightSound = new Howl({
+    src:['media/light.mp3']
+});
+
+let winSound = new Howl({
+    src:['media/win.mp3']
+});
 // Play looping background music
 backgroundMusic.play();
 setup();
@@ -192,6 +199,7 @@ function addTextAndButtons(){
 
 // Start the game scene
 function startGame(){
+    submitSound.play();
     gameScene.visible = true;
     rule1Scene.visible = false;
     rule2Scene.visible = false;
@@ -202,6 +210,7 @@ function startGame(){
 
 // Show the rules scene
 function showRules(){
+    clickSound.play();
     gameScene.visible = false;
     rule1Scene.visible = true;
     rule2Scene.visible = false;
@@ -212,6 +221,7 @@ function showRules(){
 
 // Cycle through the rules
 function cycleRules(){
+    clickSound.play();
     if(rule1Scene.visible){
         rule1Scene.visible = false;
         rule2Scene.visible = true;
@@ -268,6 +278,7 @@ function getCurrentRow(){
 
 // Handles what happens when the game is won
 function endGameWin(){
+    winSound.play();
     key.uncover();
     gameOverScene.visible = true;
 }
@@ -285,6 +296,8 @@ function endGame(){
 
 // Restarts all the objects and resets the funcationality of everything
 function restartGame(){
+    submitSound.play();
+
     while(stage.children[0])
         stage.removeChild(stage.children[0]);
     

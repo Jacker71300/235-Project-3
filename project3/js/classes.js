@@ -292,6 +292,8 @@ class Row extends PIXI.Sprite{
     }
 
     resetColor(index){
+        if(this.colorArray[index] != 0x555555)
+            lightSound.play();
         this.colorArray[index] = 0x555555;
         this.updateColors();
     }
