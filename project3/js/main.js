@@ -20,6 +20,23 @@ let currentRow = 0;
 let key
 let submitButton;
 
+// Preload sounds
+let backgroundMusic = new Howl({
+    src:['media/spainTrim.mp3'],
+    volume: .15,
+    loop: true
+});
+
+let clickSound = new Howl({
+    src:['media/click.mp3']
+});
+
+let submitSound = new Howl({
+    src:['media/submit.mp3']
+})
+
+// Play looping background music
+backgroundMusic.play();
 setup();
 
 
@@ -29,8 +46,6 @@ function setup(){
     menuScene = new PIXI.Container();
     menuScene.visible = true;
     stage.addChild(menuScene);
-
-    //console.log(menuScene);
 
     //rules scenes
     rule1Scene = new PIXI.Container();
@@ -57,9 +72,6 @@ function setup(){
     stage.addChild(gameLossScene);
 
     addTextAndButtons();
-
-    //app.ticker.add(gameLoop);
-    //app.ticker.start();
 }
 
 // Creates the functions for the buttons in each scene
@@ -233,15 +245,14 @@ function createKeyAndInput(){
 
 // Submit a guess
 function submit(){
-    //console.log(currentRow);
+    submitSound.play();
+
     if(rows[currentRow].isComplete()){
         rows[currentRow].compareRow(key);
         if(rows[currentRow].didPlayerWin()){
-            //console.log("win");
             endGameWin();
         }
         else if(currentRow == rows.length - 1){
-            //console.log("lose");
             endGameLose();
         }
         else{
@@ -252,8 +263,6 @@ function submit(){
 
 // Returns the currently active row
 function getCurrentRow(){
-    //console.log(currentRow);
-    //console.log(rows[currentRow]);
     return rows[currentRow];
 }
 
