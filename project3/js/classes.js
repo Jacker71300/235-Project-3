@@ -264,12 +264,14 @@ class Row extends PIXI.Sprite{
     }
 
     compareRow(key){
-        let checked = [false, false, false, false];
+        let colorChecked = [false, false, false, false];
+        let keyChecked = [false, false, false, false];
 
         //check for direct matches
         for(let c = 0; c < 4; c++){
             if(this.colorArray[c] == key.colorArray[c]){
-                checked[c] = true;
+                colorChecked[c] = true;
+                keyChecked[c] = true;
 
                 //loop through answers for first empty slot
                 //make it black
@@ -284,16 +286,20 @@ class Row extends PIXI.Sprite{
 
         //first, loop through colorArray
         for(let c = 0; c < 4; c++){
+            if(colorChecked[c]){
+                continue;
+            }
             //now loop through the key
             //if checked, move on to net color in key
             for(let k = 0; k < 4; k++){
-                if(checked[k]){
+                if(keyChecked[k]){
                     continue;
                 }
                 //otherwise, check if there's a misplaced color
                 else if(this.colorArray[c] == key.colorArray[k]){
                     //if there is, find where to change the color in the answerArray
-                    checked[k] = true;
+                    keyChecked[k] = true;
+                    colorChecked[c] = true;
                     for(let a = 0; a < 4; a++){
                         if(this.answerArray[a] == 0x555555){
                             this.answerArray[a] = 0x888843;

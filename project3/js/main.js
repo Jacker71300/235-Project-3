@@ -103,7 +103,7 @@ function addTextAndButtons(){
     let nextButton1 = PIXI.Sprite.fromImage("images/nextButton.png");
     nextButton1.anchor.set(0.5,0.5);
     nextButton1.x = sceneWidth - 150;
-    nextButton1.y = sceneHeight - 85;
+    nextButton1.y = sceneHeight - 40;
     nextButton1.interactive = true;
     nextButton1.buttonMode = true;
     nextButton1.on("pointerup", cycleRules);
@@ -114,7 +114,7 @@ function addTextAndButtons(){
     let nextButton2 = PIXI.Sprite.fromImage("images/nextButton.png");
     nextButton2.anchor.set(0.5,0.5);
     nextButton2.x = sceneWidth - 150;
-    nextButton2.y = sceneHeight - 85;
+    nextButton2.y = sceneHeight - 40;
     nextButton2.interactive = true;
     nextButton2.buttonMode = true;
     nextButton2.on("pointerup", cycleRules);
@@ -125,7 +125,7 @@ function addTextAndButtons(){
     let nextButton3 = PIXI.Sprite.fromImage("images/nextButton.png");
     nextButton3.anchor.set(0.5,0.5);
     nextButton3.x = sceneWidth - 150;
-    nextButton3.y = sceneHeight - 85;
+    nextButton3.y = sceneHeight - 40;
     nextButton3.interactive = true;
     nextButton3.buttonMode = true;
     nextButton3.on("pointerup", cycleRules);
