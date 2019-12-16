@@ -193,7 +193,8 @@ function addTextAndButtons(){
     restartButton.on("pointerup",restartGame);
     restartButton.on("pointerover",e=>e.target.alpha = 0.7);
     restartButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
-    
+    restartButton.scale.set(.34);
+
     gameOverScene.addChild(restartButton);
     
     let failButton = PIXI.Sprite.fromImage("images/LoseButton.png");
