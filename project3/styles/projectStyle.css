@@ -1,12 +1,12 @@
 h1 {
     color: #D42125;
     font-family: sans-serif;
-    border-bottom: 5px solid #05496C;
+    border-bottom: 5px solid #cd9932;
 }
 
 #gamespace {
     height: 700px;
-    background-color: #ccc;
+    background-color: #911417;
     align-self: center;
     align-content: center;
     margin: 0 auto;
@@ -28,7 +28,7 @@ body{
 }
 
 #wrapper{
-    background-color: #68c6e0;
+    background-color: #341c00;
     padding: 2vw;
 }
 

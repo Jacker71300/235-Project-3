@@ -21,6 +21,7 @@ class Input extends PIXI.Graphics{
         this.color5 = PIXI.Sprite.fromImage("images/Button.png");
         this.color6 = PIXI.Sprite.fromImage("images/Button.png");
 
+        //center anchor points
         this.color1.anchor.set(0.5,0.5);
         this.color2.anchor.set(0.5,0.5);
         this.color3.anchor.set(0.5,0.5);
@@ -53,6 +54,7 @@ class Input extends PIXI.Graphics{
         this.color6.position.y = this.y + 28;
         this.color6.tint = 0x800080;
         
+        //add buttons to main box
         this.addChild(this.color1);
         this.addChild(this.color2);
         this.addChild(this.color3);
@@ -98,6 +100,7 @@ class Input extends PIXI.Graphics{
         this.color6.on("pointerout", e=>e.currentTarget.alpha = 1.0);
     }
 
+    //finds the first empty light in that row and makes it the set color
     transferColor(row, color){
         clickSound.play();
         for(let i = 0; i < 4; i++){
@@ -114,63 +117,56 @@ class Input extends PIXI.Graphics{
 class Row extends PIXI.Sprite{
     constructor(x = 100, y = 55, color = 0x999999){
         super();
-        // this.beginFill(color);
-        // this.drawRect(x, y, 400, 50);
-        // this.endFill();
 
+        //make row from images
         this.row = PIXI.Sprite.fromImage("images/Row.png");
         this.row.anchor.set(0,0);
         this.row.position.x = x;
         this.row.position.y = y;
         this.addChild(this.row);
 
-
         this.x = x;
         this.y = y;
         this.color = color;
         
-
+        //make arrays for lights to reference for their own color
+        //(used in updateColors)
         this.colorArray = [0x555555, 0x555555, 0x555555, 0x555555];
         this.answerArray = [0x555555, 0x555555, 0x555555, 0x555555];
 
         this.updateColors();
     }
 
+    //this is used because pixi doesnt let you change the color of something when its drawn
+    //so every time a light changes color, all 8 lights need to be changed too
     updateColors(){
+        //creates 4 lights
         this.hole1 = PIXI.Sprite.fromImage("images/Light.png");
         this.hole2 = PIXI.Sprite.fromImage("images/Light.png");
         this.hole3 = PIXI.Sprite.fromImage("images/Light.png");
         this.hole4 = PIXI.Sprite.fromImage("images/Light.png");
 
+        //center anchor points
         this.hole1.anchor.set(0.5,0.5);
         this.hole2.anchor.set(0.5,0.5);
         this.hole3.anchor.set(0.5,0.5);
         this.hole4.anchor.set(0.5,0.5);
 
-        // this.hole1.beginFill(this.colorArray[0]);
-        // this.hole1.drawCircle(this.x + 30, this.y + 25, 20);
-        // this.hole1.endFill();
+        //place lights in appropriate spaces
         this.hole1.position.set(this.x + 30, this.y + 30);
         this.hole1.tint = this.colorArray[0];
         
-        // this.hole2.beginFill(this.colorArray[1]);
-        // this.hole2.drawCircle(this.x + 90, this.y + 25, 20);
-        // this.hole2.endFill();
         this.hole2.position.set(this.x + 90, this.y + 30);
         this.hole2.tint = this.colorArray[1];
         
-        // this.hole3.beginFill(this.colorArray[2]);
-        // this.hole3.drawCircle(this.x + 150, this.y + 25, 20);
-        // this.hole3.endFill();
         this.hole3.position.set(this.x + 150, this.y + 30);
         this.hole3.tint = this.colorArray[2];
         
-        // this.hole4.beginFill(this.colorArray[3]);
-        // this.hole4.drawCircle(this.x + 210, this.y + 25, 20);
-        // this.hole4.endFill();
         this.hole4.position.set(this.x + 210, this.y + 30);
         this.hole4.tint = this.colorArray[3];
 
+        //make them all buttons
+        //when pressed, call resetColor for that location in colorArray
         this.hole1.interactive = true;
         this.hole1.buttonMode = true;
         this.hole1.instantiating = true;
@@ -204,39 +200,28 @@ class Row extends PIXI.Sprite{
         this.answer3 = PIXI.Sprite.fromImage("images/Light.png");
         this.answer4 = PIXI.Sprite.fromImage("images/Light.png");
         
-        // this.answer1.beginFill(this.answerArray[0]);
-        // this.answer1.drawCircle(this.x + 250, this.y + 15, 8)
-        // this.answer1.endFill();
+        //places answer lights
         this.answer1.scale.set(0.25);
         this.answer1.anchor.set(0.5,0.5);
         this.answer1.position.set(this.x + 260, this.y + 20);
         this.answer1.tint = this.answerArray[0];
 
-        // this.answer2.beginFill(this.answerArray[1]);
-        // this.answer2.drawCircle(this.x + 270, this.y + 15, 8)
-        // this.answer2.endFill();
         this.answer2.scale.set(0.25);
         this.answer2.anchor.set(0.5,0.5);
         this.answer2.position.set(this.x + 280, this.y + 20);
         this.answer2.tint = this.answerArray[1];
 
-
-        // this.answer3.beginFill(this.answerArray[2]);
-        // this.answer3.drawCircle(this.x + 250, this.y + 35, 8)
-        // this.answer3.endFill();
         this.answer3.scale.set(0.25);
         this.answer3.anchor.set(0.5,0.5);
         this.answer3.position.set(this.x + 260, this.y + 40);
         this.answer3.tint = this.answerArray[2];
 
-        // this.answer4.beginFill(this.answerArray[3]);
-        // this.answer4.drawCircle(this.x + 270, this.y + 35, 8)
-        // this.answer4.endFill();
         this.answer4.scale.set(0.25);
         this.answer4.anchor.set(0.5,0.5);
         this.answer4.position.set(this.x + 280, this.y + 40);
         this.answer4.tint = this.answerArray[3];
 
+        //add all 8 lights to parent
         this.addChild(this.hole1);
         this.addChild(this.hole2);
         this.addChild(this.hole3);
@@ -247,6 +232,7 @@ class Row extends PIXI.Sprite{
         this.addChild(this.answer4);
     }
 
+    //used to check how well the player did and change the answer lights accordingly
     compareRow(key){
         let colorChecked = [false, false, false, false];
         let keyChecked = [false, false, false, false];
@@ -297,6 +283,7 @@ class Row extends PIXI.Sprite{
         this.updateColors();
     }
 
+    //used to change color of a wrong guess back to gray if player made a mistake
     resetColor(index){
         if(this.colorArray[index] != 0x555555)
             lightSound.play();
@@ -304,6 +291,7 @@ class Row extends PIXI.Sprite{
         this.updateColors();
     }
 
+    //can't submit if all lights aren't filled
     isComplete(){
         for(let r = 0; r < 4; r++){
             if(this.colorArray[r] == 0x555555){
@@ -314,6 +302,7 @@ class Row extends PIXI.Sprite{
         return true;
     }
 
+    //makes sure all 4 are correct, returns player win state
     didPlayerWin(){
         if(this.answerArray[3] == 0xFFFFFF){
             return true;
@@ -322,19 +311,19 @@ class Row extends PIXI.Sprite{
     }
 }
 
+
 class Key extends PIXI.Graphics{
     constructor(x = 150, y = 0, color = 0x999999){
         super();
-        // this.beginFill(color);
-        // this.drawRect(x, y, 300, 50);
-        // this.endFill();
 
+        //used row image
         this.row = PIXI.Sprite.fromImage("images/Row.png");
         this.row.position.set(x, y);
         this.addChild(this.row);
 
         this.colorArray = [];
 
+        //randomly generate color for each space
         for(let i = 0; i < 4; i++){
             let colorNum = Math.floor(Math.random() * 6);
 
@@ -358,51 +347,41 @@ class Key extends PIXI.Graphics{
             }
         }
 
+        //make all lights
         this.peg1 = PIXI.Sprite.fromImage("images/Light.png");
         this.peg2 = PIXI.Sprite.fromImage("images/Light.png");
         this.peg3 = PIXI.Sprite.fromImage("images/Light.png");
         this.peg4 = PIXI.Sprite.fromImage("images/Light.png");
+        //drawn over lights to hide them until the code is guessed
+        //we could just not draw them at all, but this was easier for debugging
         this.cover = PIXI.Sprite.fromImage("images/Cover.png");
 
+        //center anchors
         this.peg1.anchor.set(0.5,0.5);
         this.peg2.anchor.set(0.5,0.5);
         this.peg3.anchor.set(0.5,0.5);
         this.peg4.anchor.set(0.5,0.5);
 
-        // this.peg1.beginFill(this.colorArray[0]);
-        // this.peg1.drawCircle(x + 30, y + 25, 20);
-        // this.peg1.endFill();
+        //space lights out over row
         this.peg1.position.x = x + 30;
         this.peg1.position.y = y + 30;
         this.peg1.tint = this.colorArray[0];
         
-        // this.peg2.beginFill(this.colorArray[1]);
-        // this.peg2.drawCircle(x + 90, y + 25, 20);
-        // this.peg2.endFill();
         this.peg2.position.x = x + 90;
         this.peg2.position.y = y + 30;
         this.peg2.tint = this.colorArray[1];
         
-        // this.peg3.beginFill(this.colorArray[2]);
-        // this.peg3.drawCircle(x + 150, y + 25, 20);
-        // this.peg3.endFill();
         this.peg3.position.x = x + 150;
         this.peg3.position.y = y + 30;
         this.peg3.tint = this.colorArray[2];
         
-        // this.peg4.beginFill(this.colorArray[3]);
-        // this.peg4.drawCircle(x + 210, y + 25, 20);
-        // this.peg4.endFill();
         this.peg4.position.x = x + 210;
         this.peg4.position.y = y + 30;
         this.peg4.tint = this.colorArray[3];
 
-        // this.cover.beginFill(color);
-        // this.cover.drawRect(x, y, 300, 50);
-        // this.cover.endFill();
         this.cover.position.set(x, y);
 
-
+        //add children to parent
         this.addChild(this.peg1);
         this.addChild(this.peg2);
         this.addChild(this.peg3);
@@ -410,6 +389,7 @@ class Key extends PIXI.Graphics{
         this.addChild(this.cover);
     }
 
+    //called when the game is won, removes cover to reveal 
     uncover(){
         //console.log("win");
         this.removeChild(this.cover);
