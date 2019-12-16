@@ -35,6 +35,11 @@ let submitSound = new Howl({
     src:['media/submit.mp3']
 });
 
+let submitFailSound = new Howl({
+    src:['media/submitFail.mp3'],
+    volume: .4
+});
+
 let lightSound = new Howl({
     src:['media/light.mp3']
 });
@@ -42,6 +47,7 @@ let lightSound = new Howl({
 let winSound = new Howl({
     src:['media/win.mp3']
 });
+
 // Play looping background music
 backgroundMusic.play();
 setup();
@@ -187,7 +193,8 @@ function addTextAndButtons(){
     restartButton.on("pointerup",restartGame);
     restartButton.on("pointerover",e=>e.target.alpha = 0.7);
     restartButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
-    
+    restartButton.scale.set(.34);
+
     gameOverScene.addChild(restartButton);
     
     let failButton = PIXI.Sprite.fromImage("images/LoseButton.png");
@@ -275,6 +282,8 @@ function submit(){
             currentRow++;
         }
     }
+    else
+        submitFailSound.play();
 }
 
 // Returns the currently active row
