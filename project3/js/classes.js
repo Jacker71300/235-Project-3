@@ -13,6 +13,7 @@ class Input extends PIXI.Graphics{
         this.y = y;
         this.color = color;
 
+        // Create buttons
         this.color1 = PIXI.Sprite.fromImage("images/Button.png");
         this.color2 = PIXI.Sprite.fromImage("images/Button.png");
         this.color3 = PIXI.Sprite.fromImage("images/Button.png");
@@ -27,44 +28,27 @@ class Input extends PIXI.Graphics{
         this.color5.anchor.set(0.5,0.5);
         this.color6.anchor.set(0.5,0.5);
 
-        // this.color1.beginFill(0xFF00000);
-        // this.color1.drawCircle(x + 30, y + 25, 20);
-        // this.color1.endFill();
+        // Set position and colors of buttons
         this.color1.position.x = this.x + 30;
         this.color1.position.y = this.y + 28;
         this.color1.tint = 0xFF00000;
         
-        // this.color2.beginFill(0xFF8C00);
-        // this.color2.drawCircle(x + 90, y + 25, 20);
-        // this.color2.endFill();
         this.color2.position.x = this.x + 77;
         this.color2.position.y = this.y + 28;
         this.color2.tint = 0xFF8C00;
         
-        // this.color3.beginFill(0xDAFF00);
-        // this.color3.drawCircle(x + 150, y + 25, 20);
-        // this.color3.endFill();
         this.color3.position.x = this.x + 124;
         this.color3.position.y = this.y + 28;
         this.color3.tint = 0xDAFF00;
 
-        // this.color4.beginFill(0x00DD00);
-        // this.color4.drawCircle(x + 210, y + 25, 20);
-        // this.color4.endFill();
         this.color4.position.x = this.x + 171;
         this.color4.position.y = this.y + 28;
         this.color4.tint = 0x00DD00;
         
-        // this.color5.beginFill(0x0000FF);
-        // this.color5.drawCircle(x + 270, y + 25, 20);
-        // this.color5.endFill();
         this.color5.position.x = this.x + 218;
         this.color5.position.y = this.y + 28;
         this.color5.tint = 0x0000FF;
         
-        // this.color6.beginFill(0x800080);
-        // this.color6.drawCircle(x + 330, y + 25, 20);
-        // this.color6.endFill();
         this.color6.position.x = this.x + 265;
         this.color6.position.y = this.y + 28;
         this.color6.tint = 0x800080;
@@ -76,6 +60,7 @@ class Input extends PIXI.Graphics{
         this.addChild(this.color5);
         this.addChild(this.color6);
 
+        // Set functionality of all buttons
         this.color1.interactive = true;
         this.color1.buttonMode = true;
         this.color1.on("pointerover", e=>e.target.alpha = .7);
@@ -114,11 +99,10 @@ class Input extends PIXI.Graphics{
     }
 
     transferColor(row, color){
+        clickSound.play();
         for(let i = 0; i < 4; i++){
             if(row.colorArray[i] == 0x555555){
-                //console.log("Before: " + i + "-" + row.colorArray[i]);
                 row.colorArray[i] = color;
-                //console.log("After: " + i + "-" + + row.colorArray[i]);
                 break;
             }
         }
