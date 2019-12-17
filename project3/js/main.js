@@ -16,7 +16,9 @@ let gameScene;
 let gameOverScene;
 let gameLossScene;
 let muteButton;
+let mute;
 let unmuteButton;
+let unmute;
 //global list of all rows in the game scene
 let rows = [];
 let currentRow = 0;
@@ -126,9 +128,9 @@ function addTextAndButtons(){
     // Create start button for main menu
     let startButton = PIXI.Sprite.fromImage("images/StartButton.png");
     startButton.anchor.set(0.5,0.5);
-    startButton.scale.set(.8);
+    startButton.scale.set(.75);
     startButton.x = sceneWidth / 2;
-    startButton.y = sceneHeight - 100;
+    startButton.y = sceneHeight - 140;
     startButton.interactive = true;
     startButton.buttonMode = true;
     startButton.on("pointerup",startGame);
@@ -139,9 +141,9 @@ function addTextAndButtons(){
     //create rules button for main menu
     let rulesButton = PIXI.Sprite.fromImage("images/RulesButton.png");
     rulesButton.anchor.set(0.5,0.5);
-    rulesButton.scale.set(.8);
+    rulesButton.scale.set(.75);
     rulesButton.x = sceneWidth / 2;
-    rulesButton.y = sceneHeight - 250;
+    rulesButton.y = sceneHeight - 275;
     rulesButton.interactive = true;
     rulesButton.buttonMode = true;
     rulesButton.on("pointerup",showRules);
@@ -229,8 +231,9 @@ function addTextAndButtons(){
     gameLossScene.addChild(failButton);
 
     // Create the mute button
-    let mute = PIXI.Sprite.fromImage("images/MuteButton.png");
-    mute.position.set(430, 10);
+    mute = PIXI.Sprite.fromImage("images/MuteButton.png");
+    mute.anchor.set(0.5,0.5);
+    mute.position.set(sceneWidth / 2, sceneHeight - 40);
     mute.interactive = true;
     mute.buttonMode = true;
     mute.on("pointerup",muteAudio);
@@ -239,8 +242,9 @@ function addTextAndButtons(){
     muteButton.addChild(mute);
 
     // Create the unmute button
-    let unmute = PIXI.Sprite.fromImage("images/UnmuteButton.png");
-    unmute.position.set(430, 10);
+    unmute = PIXI.Sprite.fromImage("images/UnmuteButton.png");
+    unmute.anchor.set(0.5,0.5);
+    unmute.position.set(sceneWidth / 2, sceneHeight - 40);
     unmute.interactive = true;
     unmute.buttonMode = true;
     unmute.on("pointerup",unmuteAudio);
@@ -251,8 +255,12 @@ function addTextAndButtons(){
 
 // Start the game scene
 function startGame(){
-    if(localStorage.getItem("muted") == "false")
+    if(localStorage.getItem("muted") == "false"){
         submitSound.play();
+    }
+
+    mute.position.set(510, 35);
+    unmute.position.set(510, 35);
     gameScene.visible = true;
     rule1Scene.visible = false;
     rule2Scene.visible = false;
@@ -263,9 +271,13 @@ function startGame(){
 
 // Show the rules scene
 function showRules(){
-    if(localStorage.getItem("muted") == "false")
+    if(localStorage.getItem("muted") == "false"){
         clickSound.play();
-        
+    }
+    
+    
+    mute.position.set(100, 230);
+    unmute.position.set(100, 230);
     gameScene.visible = false;
     rule1Scene.visible = true;
     rule2Scene.visible = false;
@@ -290,6 +302,8 @@ function cycleRules(){
     else if(rule3Scene.visible){
         rule3Scene.visible = false;
         menuScene.visible = true;
+        mute.position.set(sceneWidth / 2, sceneHeight - 40);
+        unmute.position.set(sceneWidth / 2, sceneHeight - 40);
     }
 }
 

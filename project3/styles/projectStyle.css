@@ -35,7 +35,7 @@ body{
 ul {
     grid-area: nav;
     list-style-type: none;
-    background-color: lightgray;
+    background-color: #cd9932;
     color: black;
     margin: 0;
     padding: 0;
@@ -48,7 +48,7 @@ li {
   
 li a {
     display: block;
-    color: #1d6579;
+    color: #D42125;
     font-size: 3vh;
     text-align: center;
     padding: 14px 16px;
@@ -56,5 +56,5 @@ li a {
 }
 
 li a:hover {
-    background-color: #D42125;
+    background-color: #916611;
 }
