@@ -8,7 +8,6 @@ const sceneHeight = app.view.height;
 
 let stage;
 
-//scenes for the game
 let menuScene;
 let rule1Scene;
 let rule2Scene;
@@ -20,11 +19,13 @@ let muteButton;
 let unmuteButton;
 //global list of all rows in the game scene
 let rows = [];
-//track which row in the array the player is currently filling
 let currentRow = 0;
 //a reference to the current correct code
 let key;
 let submitButton;
+if(localStorage.getItem("muted") == null){
+    localStorage.setItem("muted", false);
+}
 
 if(localStorage.getItem("muted") == null){
     localStorage.setItem("muted", false);
@@ -201,7 +202,10 @@ function addTextAndButtons(){
     submitButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
     gameScene.addChild(submitButton);
 
-    // Create restart button for win case
+    // Create the game over scene
+    
+
+    // Create restart button for game over scene
     let restartButton = PIXI.Sprite.fromImage("images/AgainButton.png");
     restartButton.position.set(sceneWidth / 4, sceneHeight/3);
     restartButton.interactive = true;
@@ -213,7 +217,6 @@ function addTextAndButtons(){
 
     gameOverScene.addChild(restartButton);
     
-    //create restart button for lose case
     let failButton = PIXI.Sprite.fromImage("images/LoseButton.png");
     failButton.position.set(sceneWidth / 4, sceneHeight/3);
     failButton.interactive = true;
@@ -249,8 +252,7 @@ function addTextAndButtons(){
 // Start the game scene
 function startGame(){
     if(localStorage.getItem("muted") == "false")
-        clickSound.play();
-        
+        submitSound.play();
     gameScene.visible = true;
     rule1Scene.visible = false;
     rule2Scene.visible = false;
@@ -263,7 +265,7 @@ function startGame(){
 function showRules(){
     if(localStorage.getItem("muted") == "false")
         clickSound.play();
-
+        
     gameScene.visible = false;
     rule1Scene.visible = true;
     rule2Scene.visible = false;
@@ -347,6 +349,11 @@ function endGameWin(){
 function endGameLose(){
     key.uncover();
     gameLossScene.visible = true;
+}
+
+// Unused
+function endGame(){
+    
 }
 
 // Restarts all the objects and resets the funcationality of everything
