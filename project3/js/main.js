@@ -16,13 +16,19 @@ let rule3Scene;
 let gameScene;
 let gameOverScene;
 let gameLossScene;
+let muteButton;
+let unmuteButton;
 //global list of all rows in the game scene
 let rows = [];
 //track which row in the array the player is currently filling
 let currentRow = 0;
 //a reference to the current correct code
-let key
+let key;
 let submitButton;
+
+if(localStorage.getItem("muted") == null){
+    localStorage.setItem("muted", false);
+}
 
 // Preload sounds
 let backgroundMusic = new Howl({
@@ -39,6 +45,11 @@ let submitSound = new Howl({
     src:['media/submit.mp3']
 });
 
+let submitFailSound = new Howl({
+    src:['media/submitFail.mp3'],
+    volume: .4
+});
+
 let lightSound = new Howl({
     src:['media/light.mp3']
 });
@@ -48,7 +59,8 @@ let winSound = new Howl({
 });
 
 // Play looping background music
-backgroundMusic.play();
+if(localStorage.getItem("muted") == "false")
+    backgroundMusic.play();
 setup();
 
 
@@ -82,6 +94,14 @@ function setup(){
     gameLossScene = new PIXI.Container();
     gameLossScene.visible = false;
     stage.addChild(gameLossScene);
+
+    muteButton = new PIXI.Container();
+    muteButton.visible = localStorage.getItem("muted") == "false";
+    stage.addChild(muteButton);
+
+    unmuteButton = new PIXI.Container();
+    unmuteButton.visible = localStorage.getItem("muted") == "true";
+    stage.addChild(unmuteButton);
 
     addTextAndButtons();
 }
@@ -189,7 +209,8 @@ function addTextAndButtons(){
     restartButton.on("pointerup",restartGame);
     restartButton.on("pointerover",e=>e.target.alpha = 0.7);
     restartButton.on("pointerout",e=>e.currentTarget.alpha = 1.0);
-    
+    restartButton.scale.set(.34);
+
     gameOverScene.addChild(restartButton);
     
     //create restart button for lose case
@@ -203,11 +224,33 @@ function addTextAndButtons(){
     failButton.scale.set(.34);
     
     gameLossScene.addChild(failButton);
+
+    // Create the mute button
+    let mute = PIXI.Sprite.fromImage("images/MuteButton.png");
+    mute.position.set(430, 10);
+    mute.interactive = true;
+    mute.buttonMode = true;
+    mute.on("pointerup",muteAudio);
+    mute.on("pointerover",e=>e.target.alpha = 0.7);
+    mute.on("pointerout",e=>e.currentTarget.alpha = 1.0);
+    muteButton.addChild(mute);
+
+    // Create the unmute button
+    let unmute = PIXI.Sprite.fromImage("images/UnmuteButton.png");
+    unmute.position.set(430, 10);
+    unmute.interactive = true;
+    unmute.buttonMode = true;
+    unmute.on("pointerup",unmuteAudio);
+    unmute.on("pointerover",e=>e.target.alpha = 0.7);
+    unmute.on("pointerout",e=>e.currentTarget.alpha = 1.0);
+    unmuteButton.addChild(unmute);
 }
 
 // Start the game scene
 function startGame(){
-    submitSound.play();
+    if(localStorage.getItem("muted") == "false")
+        clickSound.play();
+        
     gameScene.visible = true;
     rule1Scene.visible = false;
     rule2Scene.visible = false;
@@ -218,7 +261,9 @@ function startGame(){
 
 // Show the rules scene
 function showRules(){
-    clickSound.play();
+    if(localStorage.getItem("muted") == "false")
+        clickSound.play();
+
     gameScene.visible = false;
     rule1Scene.visible = true;
     rule2Scene.visible = false;
@@ -229,7 +274,9 @@ function showRules(){
 
 // Cycle through the rules
 function cycleRules(){
-    clickSound.play();
+    if(localStorage.getItem("muted") == "false")
+        clickSound.play();    
+
     if(rule1Scene.visible){
         rule1Scene.visible = false;
         rule2Scene.visible = true;
@@ -265,7 +312,8 @@ function createKeyAndInput(){
 function submit(){
 
     if(rows[currentRow].isComplete()){
-        submitSound.play();
+        if(localStorage.getItem("muted") == "false")
+            submitSound.play();
 
         rows[currentRow].compareRow(key);
         if(rows[currentRow].didPlayerWin()){
@@ -278,6 +326,8 @@ function submit(){
             currentRow++;
         }
     }
+    else if(localStorage.getItem("muted") == "false")
+        submitFailSound.play();
 }
 
 // Returns the currently active row
@@ -287,7 +337,8 @@ function getCurrentRow(){
 
 // Handles what happens when the game is won
 function endGameWin(){
-    winSound.play();
+    if(localStorage.getItem("muted") == "false")
+        winSound.play();
     key.uncover();
     gameOverScene.visible = true;
 }
@@ -300,7 +351,8 @@ function endGameLose(){
 
 // Restarts all the objects and resets the funcationality of everything
 function restartGame(){
-    submitSound.play();
+    if(localStorage.getItem("muted") == "false")
+        submitSound.play();
 
     while(stage.children[0])
         stage.removeChild(stage.children[0]);
@@ -308,4 +360,20 @@ function restartGame(){
     rows = [];
     currentRow = 0;
     setup();
+}
+
+// Mutes all audio
+function muteAudio(){
+    localStorage.setItem("muted", "true");
+    backgroundMusic.stop();
+    unmuteButton.visible = true;
+    muteButton.visible = false;
+}
+
+// Unmutes all audio
+function unmuteAudio(){
+    localStorage.setItem("muted", "false");
+    backgroundMusic.play();
+    unmuteButton.visible = false;
+    muteButton.visible = true;
 }
