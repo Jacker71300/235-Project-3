@@ -298,11 +298,6 @@ function endGameLose(){
     gameLossScene.visible = true;
 }
 
-// Unused
-function endGame(){
-    
-}
-
 // Restarts all the objects and resets the funcationality of everything
 function restartGame(){
     submitSound.play();
