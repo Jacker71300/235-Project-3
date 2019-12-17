@@ -102,7 +102,8 @@ class Input extends PIXI.Graphics{
 
     //finds the first empty light in that row and makes it the set color
     transferColor(row, color){
-        clickSound.play();
+        if(localStorage.getItem("muted") == "false")
+            clickSound.play();
         for(let i = 0; i < 4; i++){
             if(row.colorArray[i] == 0x555555){
                 row.colorArray[i] = color;
@@ -285,7 +286,7 @@ class Row extends PIXI.Sprite{
 
     //used to change color of a wrong guess back to gray if player made a mistake
     resetColor(index){
-        if(this.colorArray[index] != 0x555555)
+        if(this.colorArray[index] != 0x555555 && localStorage.getItem("muted") == "false")
             lightSound.play();
         this.colorArray[index] = 0x555555;
         this.updateColors();
