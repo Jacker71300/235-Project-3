@@ -2,9 +2,6 @@
 class Input extends PIXI.Graphics{
     constructor(x = 0, y = 600, color = 0x999999){
         super();
-        // this.beginFill(color);
-        // this.drawRect(x, y, 400, 50);
-        // this.endFill();
         this.input = PIXI.Sprite.fromImage("images/Input.png");
         this.input.position.set(x, y);
         this.addChild(this.input);
@@ -392,7 +389,6 @@ class Key extends PIXI.Graphics{
 
     //called when the game is won, removes cover to reveal 
     uncover(){
-        //console.log("win");
         this.removeChild(this.cover);
     }
 }
