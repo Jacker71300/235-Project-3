@@ -87,6 +87,7 @@ function setup(){
 
     // Create scenes
     gameScene = new PIXI.Container();
+    let backgroundColor = new PIXI.Graphics();
     gameScene.visible = false;
     stage.addChild(gameScene);
 
@@ -187,7 +188,7 @@ function addTextAndButtons(){
 
     // Create the rows and SS for game scene
     let background = new PIXI.Graphics();
-    background.beginFill(0x222222);
+    background.beginFill(0x341c00);
     background.drawRect(0, 0, sceneWidth, sceneHeight);
     gameScene.addChild(background);
     createRows(9);
